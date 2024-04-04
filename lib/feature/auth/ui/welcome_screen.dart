@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                       isActive: true,
                       height: 52,
                       width: 167,
-                      text: 'Log In',
+                      text: 'Seg In',
                       callback: () {
                         Navigator.pushNamed(context, '/auth');
                       }, border: 21,),
@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                       isActive: false,
                       height: 52,
                       width: 167,
-                      text: 'Seg In',
+                      text: 'Log In',
                       callback: () {
                         Navigator.pushNamed(context, '/Reg');
                       }, border: 21,),
