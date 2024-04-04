@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
+import 'feature/auth/ui/login.dart';
+import 'feature/auth/ui/sign_in.dart';
 import 'feature/auth/ui/welcome_screen.dart';
 
 void main() {
@@ -27,8 +29,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => WelcomeScreen(),
-        // "/auth": (context) => LoginScreen(),
-        // "/Reg": (context) => RegScreen(),
+         "/auth": (context) => LoginScreen(),
+        "/Reg": (context) => SeginInScreen(),
         // "/Reg2": (context) => registerSecondScreen(),
         // "/UserProfile": (context) => TestApp(),
       },

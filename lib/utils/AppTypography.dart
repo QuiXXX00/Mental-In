@@ -19,4 +19,15 @@ class AppTypography {
     fontWeight: FontWeight.w400,
     fontSize: 48,
   );
+
+  static const HelveticaNeue14 = TextStyle(
+    color: Color(0xFFA1A4B2),
+    fontSize: 14,
+    fontFamily: 'HelveticaNeue',
+    fontWeight: FontWeight.w700,
+    height: 0.08,
+    letterSpacing: 0.70,
+  );
+
+
 }

@@ -7,8 +7,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   flutter_localization
   smart_auth
-  url_launcher_windows
-  window_to_front
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

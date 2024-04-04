@@ -9,6 +9,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         child: Column(
           children: [
@@ -42,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                       text: 'Log In',
                       callback: () {
                         Navigator.pushNamed(context, '/auth');
-                      }),
+                      }, border: 21,),
                   const SizedBox(
                     width: 13,
                   ),
@@ -53,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                       text: 'Seg In',
                       callback: () {
                         Navigator.pushNamed(context, '/Reg');
-                      }),
+                      }, border: 21,),
                 ],
               ),
             )

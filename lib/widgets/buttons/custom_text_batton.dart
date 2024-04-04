@@ -7,7 +7,7 @@ class CustomTextButton extends StatelessWidget {
         required this.text,
         required this.callback,
         required this.height,
-        required this.width});
+        required this.width, required this.border});
 
   final bool isActive;
 
@@ -17,6 +17,7 @@ class CustomTextButton extends StatelessWidget {
   final VoidCallback callback;
   final double height;
   final double width;
+  final double border;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class CustomTextButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: isActive ? _activeColor : _notActiveColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(21),
+              borderRadius: BorderRadius.circular(border),
             ),
           ),
           child: Text(
