@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({
+  PasswordTextField({
     Key? key,
     required this.text,
     required this.text1,
     required this.controller,
+    required this.validator
   }) : super(key: key);
 
   final String text;
   final String text1;
   final TextEditingController controller;
+  String? Function(String?) validator;
 
   @override
   _PasswordTextFieldState createState() => _PasswordTextFieldState();
@@ -23,7 +25,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 63,
-      child: TextField(
+      child: TextFormField(
         obscureText: !showPassword, // Показывать или скрывать пароль
         style: TextStyle(color: const Color(0xFF3F414E)),
         decoration: InputDecoration(
@@ -51,6 +53,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           ),
         ),
         controller: widget.controller,
+        validator: widget.validator,
       ),
     );
   }

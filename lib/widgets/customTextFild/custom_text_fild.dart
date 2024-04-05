@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField({
+ CustomTextField({
     Key? key,
-
     required this.text,
     required this.controller, required this.countCifra,
+    required this.validator
   }) : super(key: key);
 
 
   final String text;
   final TextEditingController controller;
   final int countCifra;
+  String? Function(String?) validator;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -43,7 +44,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 63,
-      child: TextField(
+      child: TextFormField(
         style: TextStyle(color: const Color(0xFF3F414E)),
         decoration: InputDecoration(
           filled: true,
@@ -63,6 +64,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           prefixIcon: showCheckIcon ? const Icon(Icons.check, color: Colors.green) : null,
         ),
         controller: widget.controller,
+        validator: widget.validator,
+
+
       ),
     );
   }

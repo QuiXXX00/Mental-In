@@ -1,20 +1,22 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-import 'feature/auth/ui/login.dart';
-import 'feature/auth/ui/sign_in.dart';
+
+import 'feature/auth/firebase/firebase_stream.dart';
+import 'feature/auth/ui/home_screen.dart';
+import 'feature/auth/ui/registration.dart';
+import 'feature/auth/ui/auth.dart';
 import 'feature/auth/ui/welcome_screen.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  runApp(const MyApp());
-
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,13 +29,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white
       ),
+      initialRoute: "/",
       routes: {
-        "/": (context) => WelcomeScreen(),
-         "/auth": (context) => LoginScreen(),
-        "/Reg": (context) => SeginInScreen(),
+        "/": (context) => FirebaseStream(),
+        "/Reg": (context) => RegestrationScreen(),
+        "/Auth": (context) => AuthScreen(),
+        "/home": (context) => HomeScreen(),
         // "/Reg2": (context) => registerSecondScreen(),
         // "/UserProfile": (context) => TestApp(),
+        //
       },
+
     );
   }
 }
