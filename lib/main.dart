@@ -7,8 +7,9 @@ import 'package:flutter/services.dart';
 
 import 'feature/auth/firebase/firebase_stream.dart';
 import 'feature/auth/ui/home_screen.dart';
-import 'feature/auth/ui/registration.dart';
-import 'feature/auth/ui/auth.dart';
+import 'feature/auth/ui/regestration_screen.dart';
+import 'feature/auth/ui/auth_screen.dart';
+import 'feature/auth/ui/login_screen_avatar.dart';
 import 'feature/auth/ui/welcome_screen.dart';
 import 'firebase_options.dart';
 
@@ -35,6 +36,8 @@ class MyApp extends StatelessWidget {
         "/Reg": (context) => RegestrationScreen(),
         "/Auth": (context) => AuthScreen(),
         "/home": (context) => HomeScreen(),
+        "/Reg2": (context) => LoginScreenAvatar(),
+        "/Well" : (context) => WelcomeScreen(),
         // "/Reg2": (context) => registerSecondScreen(),
         // "/UserProfile": (context) => TestApp(),
         //

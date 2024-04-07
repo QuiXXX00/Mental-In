@@ -59,11 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      // Поднимает содержимое при открытии клавиатуры
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
@@ -72,17 +68,56 @@ class _AuthScreenState extends State<AuthScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Container(
-                    width: 474.14,
-                    height: 334.71,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('Assets/Group 481739.png'),
-                        fit: BoxFit.cover,
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Image.asset(
+                      'Assets/Group 481740.png',
+                      width: 606.63,
+                      height: 428.24,
+                      fit: BoxFit.cover,
+                    ),
+                    const Positioned(
+                      top: 160,
+
+                      child: Text(
+                        'С возвращением',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF3F414E),
+                          fontSize: 28,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w400,
+                          height: 0.05,
+                        ),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      top: 60,
+                      left: 5,
+                      child: Transform.rotate(
+                        angle: -3.14,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamedAndRemoveUntil('/Well', (Route<dynamic> route) => false);
+                          },
+                          child: Container(
+                            width: 55,
+                            height: 55,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side:
+                                BorderSide(width: 1, color: Color(0xFFEBEAEC)),
+                                borderRadius: BorderRadius.circular(38),
+                              ),
+                            ),
+                            child: Icon(Icons.arrow_forward),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  ],
                 ),
                 const SizedBox(height: 20),
                 const Center(
