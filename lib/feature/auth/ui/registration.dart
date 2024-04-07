@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart/feature/auth/firebase/save_data.dart';
 import 'package:smart/widgets/buttons/custom_text_batton.dart';
 import 'package:smart/widgets/customTextFild/custom_text_fild_Password.dart';
 
@@ -16,10 +18,9 @@ class RegestrationScreen extends StatefulWidget {
 }
 
 class _RegestrationScreenState extends State<RegestrationScreen> {
+
   final TextEditingController nameController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
-
   final TextEditingController emailController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -43,6 +44,7 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),);
+      StoreData().postDetailsToFirestore(nameController.text.trim());
     }on FirebaseAuthException catch(e){
 
       if (e.code == 'email-already-in-use'){
@@ -51,9 +53,8 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
       }else {
         SnackBarService.showSnackBar(context, 'Неизвестная ошибка! Попробуйте еше раз.', true);
         return;}
-
     }
-    navigator.pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+    navigator.pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
   }
 
 

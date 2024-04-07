@@ -54,6 +54,8 @@ dependencies:
   flutter_localization: ^0.1.13
   firebase_auth: ^4.19.0
   email_validator: ^2.1.17
+  firebase_storage: ^11.7.0
+  cloud_firestore: ^4.16.0
 
 dev_dependencies:
   flutter_test:
