@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,37 +14,59 @@ class LoginScreenAvatar extends StatefulWidget {
 }
 
 class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
+
+ int index = 0 ;
+
+ callback(newindex) {
+   setState(() {
+     index = newindex;
+   });
+ }
+  List<String> charactersURL = [
+   'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI1.png?alt=media&token=624d3d95-6d15-4bb3-ad1f-ac3f3f9e1bb4',
+    'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI2.png?alt=media&token=caf6b1f6-2418-4dbf-9cd1-3ea2b29eb8a8',
+    'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI3.png?alt=media&token=59feef49-cfa1-457a-bbed-3cfe0609eb0a',
+    'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI4.png?alt=media&token=35351312-b69c-47b1-92c0-a1bd61f7589c',
+];
+  Future<void> uploadimg() async {
+    var user = FirebaseAuth.instance.currentUser;
+    CollectionReference ref = FirebaseFirestore.instance.collection('userProfile');
+    ref.doc(user!.uid).set({'imgURL': charactersURL[index]}, SetOptions(merge: true));
+
+    Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               alignment: AlignmentDirectional.topStart,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 700,
-                  width: 352,
+                  width: double.infinity,
                 ),
                 Image.asset(
                   'Assets/Group 481740.png',
-                  width: 606.63,
+                  width: double.infinity,
                   height: 428.24,
                   fit: BoxFit.cover,
                 ),
                 const Positioned(
                   top: 160,
-                  left: 10,
+                  left: 15,
                   child: Text(
-                    'Выбертие аватар персонажа',
+                    'Выберите аватар персонажа',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF3F414E),
-                      fontSize: 26,
+                      fontSize: 24,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       height: 0.05,
@@ -73,7 +97,7 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
                     ),
                   ),
                 ),
-                Positioned(top: 230, left: 15, child: ImageSwitcher())
+                Positioned(top: 230, left: 10, child: ImageSwitcher(index,callback))
               ],
             ),
             Padding(
@@ -84,7 +108,7 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
                   CustomTextButton(
                       isActive: true,
                       text: 'НАЧАТЬ',
-                      callback: () {Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);},
+                      callback: uploadimg,
                       height: 46.37,
                       width: 162,
                       border: 18),

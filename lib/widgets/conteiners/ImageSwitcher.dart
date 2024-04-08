@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ImageSwitcher extends StatefulWidget {
+  int selectedindex;
+  Function(int) callback;
+  ImageSwitcher( this.selectedindex,this.callback);
+
   @override
   _ImageSwitcherState createState() => _ImageSwitcherState();
 }
 
 class _ImageSwitcherState extends State<ImageSwitcher> {
-  int selectedIndex = 0;
+
+
   final List<String> imagePaths = [
     'Assets/CHIBI1.png',
     'Assets/CHIBI2.png',
@@ -15,15 +20,17 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
   ];
 
   void switchImage(int index) {
+
     setState(() {
-      selectedIndex = index;
+    widget.selectedindex = index;
+    widget.callback(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 352,
+      width: 340,
       height: 394,
       decoration: ShapeDecoration(
         color: Color(0xFF8E97FD),
@@ -43,10 +50,10 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
         children: [
           Positioned(
             top: (394 - 287) / 2,
-            left: (352 - 156) / 2,
+            left: (352 - 170) / 2,
             child: Image.asset(
-              imagePaths[selectedIndex],
-              width: 156,
+              imagePaths[widget.selectedindex],
+              width: 170,
               height: 287,
               fit: BoxFit.cover,
             ),
@@ -56,7 +63,8 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
             bottom: 10,
             child: GestureDetector(
               onTap: () {
-                switchImage((selectedIndex - 1) % imagePaths.length);
+                  switchImage((widget.selectedindex - 1) % imagePaths.length);
+
               },
               child: Transform.rotate(
                 angle: -3.14,
@@ -79,7 +87,8 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
             bottom: 10,
             child: GestureDetector(
               onTap: () {
-                switchImage((selectedIndex + 1) % imagePaths.length);
+                  switchImage((widget.selectedindex + 1) % imagePaths.length);
+                  widget.callback;
               },
               child: Transform.rotate(
                 angle: -3.14,
@@ -112,7 +121,7 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
                     height: 5,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: selectedIndex == index ? Color(0xFF3F414E) : Color(0x993F414E),
+                      color: widget.selectedindex == index ? Color(0xFF3F414E) : Color(0x993F414E),
                     ),
                   ),
                 ),
@@ -125,10 +134,4 @@ class _ImageSwitcherState extends State<ImageSwitcher> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: ImageSwitcher(),
-    ),
-  ));
-}
+
