@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,7 +14,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
         child: Row(
           children: <Widget>[
             InkWell(
-              onTap: () {},
+              onTap: (){FirebaseAuth.instance.signOut(); Navigator.pushReplacementNamed(context, '/');},
               child: CircleAvatar(
                 backgroundImage: AssetImage('Assets/Profile.png'),
                 radius: 18,

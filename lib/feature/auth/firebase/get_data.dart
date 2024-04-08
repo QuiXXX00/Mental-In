@@ -7,6 +7,7 @@ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class GetData{
   final user = FirebaseAuth.instance.currentUser;
+
   Future<String> getuser() async {
     if (user != null) {
       var snap = await FirebaseFirestore.instance.collection(
@@ -14,5 +15,14 @@ class GetData{
       Map<String, dynamic>? data = snap.data();
       return await data?['name'];
     }else return  "Пользователь не найден";
+  }
+
+  Future<String> getimg() async {
+    if (user != null) {
+      var snap = await FirebaseFirestore.instance.collection(
+          'userProfile').doc(user!.uid).get();
+      Map<String, dynamic>? data = snap.data();
+      return await data?['imgURL'];
+    }else return  "Изображение не найдено";
   }
 }
