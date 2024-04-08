@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart/feature/auth/ui/welcome_screen.dart';
 
-import '../ui/home_screen.dart';
+import '../../home/ui/home_screen.dart';
 
 
 class FirebaseStream extends StatelessWidget {

@@ -29,5 +29,48 @@ class AppTypography {
     letterSpacing: 0.70,
   );
 
+  static const f28w400 = TextStyle(
+    color: Color(0xFF3F414E),
+    fontSize: 28,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0.04,
+  );
+
+  static const f20w400 = TextStyle(
+    color: Color(0xFFA0A3B2),
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0.05,
+  );
+
+  static const f32w800Black = TextStyle(
+    color: Colors.black,
+    fontSize: 32,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w800,
+    height: 0,
+  );
+
+  static const f10w600 =  TextStyle(
+      color: Color(0xFF818181),
+      fontSize: 10,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+      height: 0,
+    );
+
+  static const f12w800 =  TextStyle(
+    color: Colors.black,
+    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w800,
+    height: 0,
+  );
+
+
+
+
 
 }

@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 
 import 'feature/auth/firebase/firebase_stream.dart';
-import 'feature/auth/ui/home_screen.dart';
+import 'feature/home/ui/home_screen.dart';
 import 'feature/auth/ui/regestration_screen.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/auth/ui/login_screen_avatar.dart';
