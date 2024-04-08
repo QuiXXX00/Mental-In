@@ -47,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   Text(
                     'Доброе утро, $username',
                     style: AppTypography.f28w400,
@@ -91,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 1),
+              padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 38),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
                     onTap: () {
@@ -107,24 +106,41 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 40,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: isDailySelected
-                              ? Color(0xFF8E97FD)
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Color(0xFF8E97FD), width: 3))),
-                      child: Text(
-                        'Дэйли',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontFamily: 'Poppins',
-                          fontWeight: isDailySelected
-                              ? FontWeight.w900
-                              : FontWeight.w500,
-                          letterSpacing: -0.16,
-                        ),
+                        color: Colors.transparent,
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Дэйли',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: 'Poppins',
+                              fontWeight: isDailySelected
+                                  ? FontWeight.w900
+                                  : FontWeight.w500,
+                              letterSpacing: -0.16,
+                            ),
+                          ),
+                          Container(
+                            width: 114,
+                            decoration: ShapeDecoration(
+
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2),
+                                side: BorderSide(
+
+                                  width: 3,
+                                  color: isDailySelected
+                                      ? Color(0xFF8E97FD)
+                                      : Colors.transparent,
+                                  
+                                  
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -140,25 +156,42 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 40,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: isTasksSelected
-                            ? Color(0xFF8E97FD)
-                            : Colors.transparent,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border(
-                            bottom:
-                                BorderSide(color: Color(0xFF8E97FD), width: 3)),
                       ),
-                      child: Text(
-                        'Задания',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontFamily: 'Poppins',
-                          fontWeight: isTasksSelected
-                              ? FontWeight.w900
-                              : FontWeight.w500,
-                          letterSpacing: -0.16,
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Задания',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: 'Poppins',
+                              fontWeight: isTasksSelected
+                                  ? FontWeight.w900
+                                  : FontWeight.w500,
+                              letterSpacing: -0.16,
+                            ),
+                          ),
+                          Container(
+                            width: 114,
+                            decoration: ShapeDecoration(
+
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2),
+                                side: BorderSide(
+
+                                  width: 3,
+                                  color: isDailySelected
+                                      ? Colors.transparent
+                                      : Color(0xFF8E97FD),
+
+
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -172,13 +205,21 @@ class _HomeScreenState extends State<HomeScreen> {
               child: isDailySelected
                   ? Column(
                       children: [
-                        CustomContainerWidget(text: 'Медитация 5 минут', exp: 3, asset1: 'Assets/icons/yoga.svg',),
+                        CustomContainerWidget(
+                          text: 'Медитация 5 минут',
+                          exp: 3,
+                          asset1: 'Assets/icons/yoga.svg',
+                        ),
                       ],
                     )
                   : isTasksSelected
                       ? Column(
                           children: [
-                            CustomContainerWidget(text: 'Дрочить 5 минут', exp: 3, asset1: 'Assets/icons/yoga.svg',),
+                            CustomContainerWidget(
+                              text: 'Дрочить 5 минут',
+                              exp: 3,
+                              asset1: 'Assets/icons/yoga.svg',
+                            ),
                           ],
                         )
                       : SizedBox(),
