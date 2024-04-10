@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:smart/feature/Profile/ui/profile.dart';
 
 
 import 'feature/Calendar/ui/Calendar_main.dart';
@@ -37,17 +38,18 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => FirebaseStream(),
+        "/": (context) => const FirebaseStream(),
         "/Reg": (context) => RegestrationScreen(),
         "/Auth": (context) => AuthScreen(),
         "/home": (context) => HomeScreen(),
         "/Reg2": (context) => LoginScreenAvatar(),
-        "/Well" : (context) => WelcomeScreen(),
+        "/Well" : (context) => const WelcomeScreen(),
         "/rec" : (context) =>Rec(),
         "/theory" : (context) =>Theory(),
         "/test" : (context) =>Test(),
         "/calendar" : (context) =>Calendar(),
-        "/bp" : (context) => BottonBar()
+        "/bp" : (context) => BottonBar(),
+        "/profile" : (context) => Profile(),
         // "/Reg2": (context) => registerSecondScreen(),
         // "/UserProfile": (context) => TestApp(),
         //
