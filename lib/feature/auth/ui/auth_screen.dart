@@ -52,7 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
       return;}
 
     }
-    navigator.pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+    navigator.pushNamedAndRemoveUntil('/bp', (Route<dynamic> route) => false);
   }
 
   @override
