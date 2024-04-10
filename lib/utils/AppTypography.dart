@@ -69,6 +69,32 @@ class AppTypography {
     height: 0,
   );
 
+  static const f20w600 =  TextStyle(
+    color: Color(0xFFFAFDFF),
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+    height: 0,
+  );
+
+  static const f18w400 =  TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0.06,
+  );
+
+  static const f24w400 =  TextStyle(
+    color: Color(0xFF3F414E),
+    fontSize: 24,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0.05,
+  );
+
+
+
 
 
 

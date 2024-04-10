@@ -45,7 +45,7 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () { Navigator.pushReplacementNamed(context, '/profile');},
               icon: SvgPicture.asset(
                 widget.asset1,
                 height: 58,
