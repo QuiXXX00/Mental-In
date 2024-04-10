@@ -16,7 +16,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             InkWell(
-              onTap: (){ Navigator.pushReplacementNamed(context, '/profile');},
+              onTap: (){ Navigator.of(context, rootNavigator: true).pushNamed('/profile');},
               child: CircleAvatar(
                 backgroundImage: AssetImage('Assets/Profile.png'),
                 radius: 18,

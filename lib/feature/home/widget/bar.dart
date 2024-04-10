@@ -6,6 +6,7 @@ import 'package:smart/feature/Calendar/ui/Calendar_main.dart';
 import 'package:smart/feature/Recimendation/ui/Recimendation_main.dart';
 import 'package:smart/feature/Test/ui/Test_main.dart';
 import 'package:smart/feature/Theory/ui/Theory_main.dart';
+import 'package:smart/feature/auth/ui/welcome_screen.dart';
 import 'package:smart/feature/home/ui/home_screen.dart';
 
 class BottonBar extends StatelessWidget {

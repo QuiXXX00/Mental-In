@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -23,9 +24,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String username = '';
-  String img = '';
+  String img = 'https://gas-kvas.com/grafic/uploads/posts/2024-01/gas-kvas-com-p-logotip-zagruzki-na-prozrachnom-fone-2.png';
   bool isDailySelected = false; // Флаг для отслеживания выбора "Дэйли"
-  bool isTasksSelected = false; // Флаг для отслеживания выбора "Задания"
+  bool isTasksSelected = true;// Флаг для отслеживания выбора "Задания"
+
 
   @override
   void initState() {
@@ -40,18 +42,20 @@ class _HomeScreenState extends State<HomeScreen> {
         img = v;
       });
     });
+
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarAvatar(text: ' ',),
+      appBar: const CustomAppBarAvatar(text: '',),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('userProfile').snapshots(),
         builder: (context, snapshot) {
-          return CustomScrollView(
-            slivers: <Widget>[
-              SliverToBoxAdapter(
+          return Column(
+            children: <Widget>[
+              Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 22),
                   child: Row(
@@ -65,30 +69,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Center(
-                    child: Text(
-                      'Статистика вашего персонажа',
-                      style: AppTypography.f20w400,
-                    ),
-                  ),
-                ),
-              ),
-              SliverPadding(
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 8),
+                 child: Center(
+                   child: Text(
+                     'Статистика вашего персонажа',
+                     style: AppTypography.f20w400,
+                   ),
+                 ),
+               ),
+              Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                sliver: SliverToBoxAdapter(
+                child: Container(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         Image.network(
-                          img,
-                          width: 140,
-                          height: 270,
-                        ),
+                          Image.network(img,
+                        width: 140,
+                        height: 270,),
                         SizedBox(
                           width: 15,
                         ),
@@ -98,143 +98,155 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 38),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            isDailySelected = true;
-                            isTasksSelected = false;
-                          });
-                        },
-                        child: Container(
-                          width: 131,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Дэйли',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: isDailySelected
-                                      ? FontWeight.w900
-                                      : FontWeight.w500,
-                                  letterSpacing: -0.16,
-                                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 38),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isDailySelected = true;
+                          isTasksSelected = false;
+                        });
+                      },
+                      child: Container(
+                        width: 131,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Дэйли',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontFamily: 'Poppins',
+                                fontWeight: isDailySelected
+                                    ? FontWeight.w900
+                                    : FontWeight.w500,
+                                letterSpacing: -0.16,
                               ),
-                              Container(
-                                width: 114,
-                                decoration: ShapeDecoration(
+                            ),
+                            Container(
+                              width: 114,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2),
+                                  side: BorderSide(
+                                    width: 3,
+                                    color: isDailySelected
+                                        ? const Color(0xFF8E97FD)
+                                        : Colors.transparent,
 
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2),
-                                    side: BorderSide(
-
-                                      width: 3,
-                                      color: isDailySelected
-                                          ? Color(0xFF8E97FD)
-                                          : Colors.transparent,
-
-
-                                    ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            isDailySelected = false;
-                            isTasksSelected = true;
-                          });
-                        },
-                        child: Container(
-                          width: 131,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Задания',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: isTasksSelected
-                                      ? FontWeight.w900
-                                      : FontWeight.w500,
-                                  letterSpacing: -0.16,
-                                ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isDailySelected = false;
+                          isTasksSelected = true;
+                        });
+                      },
+                      child: Container(
+                        width: 131,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Задания',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontFamily: 'Poppins',
+                                fontWeight: isTasksSelected
+                                    ? FontWeight.w900
+                                    : FontWeight.w500,
+                                letterSpacing: -0.16,
                               ),
-                              Container(
-                                width: 114,
-                                decoration: ShapeDecoration(
+                            ),
+                            Container(
+                              width: 114,
+                              decoration: ShapeDecoration(
 
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2),
-                                    side: BorderSide(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2),
+                                  side: BorderSide(
 
-                                      width: 3,
-                                      color: isDailySelected
-                                          ? Colors.transparent
-                                          : Color(0xFF8E97FD),
+                                    width: 3,
+                                    color: isDailySelected
+                                        ? Colors.transparent
+                                        : Color(0xFF8E97FD),
 
 
-                                    ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: isDailySelected
-                      ? Column(
-                          children: [
-                            CustomContainerWidget(
-                              text: 'Медитация 5 минут',
-                              exp: 3,
-                              asset1: 'Assets/icons/yoga.svg',
-                            ),
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection('Tasks').snapshots(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if(!snapshot.hasData) return Text('нет записей');
+                    var ref = snapshot.data?.docs;
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child:
+                      isDailySelected ? ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: snapshot.data?.docs.length,
+                          itemBuilder: (BuildContext context, int index) {
 
-                          ],
-                        )
-                      : isTasksSelected
-                          ? Column(
-                              children: [
-                                CustomContainerWidget(
-                                  text: 'Дрочить 5 минут',
-                                  exp: 3,
-                                  asset1: 'Assets/icons/yoga.svg',
-                                ),
-                              ],
-                            )
-                          : SizedBox(),
-                ),
+                            return Column(
+                                children: [CustomContainerWidget(text: snapshot.data!.docs[index].get('name'),
+                                    exp: int.parse(snapshot.data!.docs[index].get('exp')) ,
+                                    img:snapshot.data!.docs[index].get('imgurl'),
+                                    isButtonPressed: true,
+                                    index: snapshot.data!.docs[index],
+                                     )]
+                            );})
+                          : ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: snapshot.data?.docs.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                                children: [CustomContainerWidget(text: snapshot.data!.docs[index].get('name'),
+                                    exp: int.parse(snapshot.data!.docs[index].get('exp')) ,
+                                    img:snapshot.data!.docs[index].get('imgurl'),
+                                    isButtonPressed: snapshot.data!.docs[index].get('complite'),
+                                    index: snapshot.data!.docs[index].id,
+                                )]
+
+                            );})
+
+
+//
+
+
+                    );
+                  }
               ),
 
             ],

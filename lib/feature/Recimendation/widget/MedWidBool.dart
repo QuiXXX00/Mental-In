@@ -18,8 +18,8 @@ class MedWidBool extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 177,
-        height: 210,
+        width: 168,
+        height: 200,
         decoration: ShapeDecoration(
           color: containerColor,
           shape: RoundedRectangleBorder(
@@ -29,13 +29,14 @@ class MedWidBool extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              right: 0,
+              top: 3.5,
+              right: 2,
               child: SvgPicture.asset(
                 imagePath,
               ),
             ),
             Positioned(
-              top: 85,
+              top: 100,
               left: 15,
               child: Text(
                 text,
@@ -47,8 +48,8 @@ class MedWidBool extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 15,
-              top: 165,
+              left: 12,
+              top: 160,
               child: SizedBox(
                 width: 147,
                 child: Row(

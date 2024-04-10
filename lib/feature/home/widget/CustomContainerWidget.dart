@@ -1,24 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomContainerWidget extends StatefulWidget {
-  const CustomContainerWidget({
+ CustomContainerWidget({
     Key? key,
     required this.text,
     required this.exp,
-    required this.asset1,
+    required this.img,
+    required this.isButtonPressed,
+    required this.index,
   }) : super(key: key);
 
   final String text;
   final int exp;
-  final String asset1;
+  final String img;
+  bool isButtonPressed;
+  var index;
+
 
   @override
   _CustomContainerWidgetState createState() => _CustomContainerWidgetState();
 }
 
 class _CustomContainerWidgetState extends State<CustomContainerWidget> {
-  bool isButtonPressed = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +33,11 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
       width: 374,
       height: 80,
       decoration: ShapeDecoration(
-        color: isButtonPressed ? Colors.white : Color(0xFF8E97FD),
+        color: widget.isButtonPressed ? Colors.white : Color(0xFF8E97FD),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        shadows: [
+        shadows: const [
           BoxShadow(
             color: Color(0x3F000000),
             blurRadius: 4,
@@ -44,14 +51,12 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: () { Navigator.pushReplacementNamed(context, '/profile');},
-              icon: SvgPicture.asset(
-                widget.asset1,
-                height: 58,
-                width: 58,
-                color: isButtonPressed ? Colors.black : Colors.white,
-              ),
+
+            SvgPicture.network(
+              widget.img,
+              height: 58,
+              width: 58,
+              color: widget.isButtonPressed ? Colors.black :Colors.white,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +65,7 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
                 Text(
                   widget.text,
                   style: TextStyle(
-                    color: isButtonPressed ? Colors.black : Colors.white,
+                    color: widget.isButtonPressed ? Colors.black : Colors.white,
                     fontSize: 16,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
@@ -70,7 +75,7 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
                 Text(
                   '${widget.exp} exp',
                   style: TextStyle(
-                    color: isButtonPressed ? Colors.black : Colors.white,
+                    color: widget.isButtonPressed ? Colors.black : Colors.white,
                     fontSize: 12,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w300,
@@ -82,14 +87,15 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  isButtonPressed = !isButtonPressed;
+                 CollectionReference ref = FirebaseFirestore.instance.collection('Tasks');
+                 ref.doc(widget.index).set({'complite': widget.isButtonPressed ? false : true },SetOptions(merge: true));
                 });
               },
               icon: SvgPicture.asset(
-                isButtonPressed ? 'Assets/icons/check.svg' : 'Assets/icons/add_file.svg',
+                widget.isButtonPressed ? 'Assets/icons/unCheck.svg' : 'Assets/icons/check.svg',
                 height: 24,
                 width: 24,
-                color:  isButtonPressed ? Colors.black : Colors.white,
+                color:  widget.isButtonPressed ? Colors.black : Colors.white,
               ),
             ),
           ],

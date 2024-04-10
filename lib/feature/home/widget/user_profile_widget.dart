@@ -30,7 +30,7 @@ class UserProfileWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('ЗДОРОВЬЕ', style: AppTypography.f10w600),
+              Text('Здоровье', style: AppTypography.f10w600),
               SizedBox(
                 width: 45,
                 height: 17,

@@ -56,7 +56,7 @@ class Rec extends StatelessWidget {
                   padding: const  EdgeInsets.only(left: 20, right: 20, top: 27),
                   child: Row(
                     children: <Widget>[
-                      MedWidHorizontal(isOriginal: true, text: 'Счастьте',),
+                      MedWidHorizontal(isOriginal: true, text: 'Счастье',),
                       SizedBox(width: 12,),
                       MedWidHorizontal(isOriginal: false, text: 'Фокус',),
                       SizedBox(width: 12,),

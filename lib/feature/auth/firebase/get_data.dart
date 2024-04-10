@@ -25,4 +25,14 @@ class GetData{
       return await data?['imgURL'];
     }else return  "Изображение не найдено";
   }
+
+
+  Future<String> getinfo(String tag) async {
+    if (user != null) {
+      var snap = await FirebaseFirestore.instance.collection(
+          'Tasks').doc('n3gAvZYcqbh7izv41Kvk').get();
+      Map<String, dynamic>? data = snap.data();
+      return await data?['$tag'];
+    }else return  "Информация не найдена";
+  }
 }

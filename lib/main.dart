@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white
       ),
-      initialRoute: "/bp",
+      initialRoute: "/home",
       routes: {
         "/": (context) => const FirebaseStream(),
         "/Reg": (context) => RegestrationScreen(),
@@ -50,9 +50,7 @@ class MyApp extends StatelessWidget {
         "/calendar" : (context) =>Calendar(),
         "/bp" : (context) => BottonBar(),
         "/profile" : (context) => Profile(),
-        // "/Reg2": (context) => registerSecondScreen(),
-        // "/UserProfile": (context) => TestApp(),
-        //
+
       },
 
     );
