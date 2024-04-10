@@ -33,7 +33,7 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
     CollectionReference ref = FirebaseFirestore.instance.collection('userProfile');
     ref.doc(user!.uid).set({'imgURL': charactersURL[index]}, SetOptions(merge: true));
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil('/bp', (Route<dynamic> route) => false);
 }
 
   @override
