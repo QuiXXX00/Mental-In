@@ -24,17 +24,6 @@ class Rec extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: MedWid()),
             ),
-            // SliverList(
-            //   delegate: SliverChildBuilderDelegate(
-            //     (BuildContext context, int index) {
-            //       return Padding(
-            //         padding: const EdgeInsets.all(8.0),
-            //         child: MedWid(),
-            //       );
-            //     },
-            //     childCount: 10,
-            //   ),
-            // )
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -48,6 +37,7 @@ class Rec extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MedWidBool(isOriginal: true, text: 'Отдохните',),
+
                     MedWidBool(isOriginal: false, text: 'Подрочите',)
                   ],
                 ),

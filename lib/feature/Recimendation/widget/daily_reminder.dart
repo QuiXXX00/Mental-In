@@ -32,6 +32,7 @@ class DailyReminder extends StatelessWidget {
                   children: [
                     Text('Ежедневное напоминание',
                         style: AppTypography.f18w400),
+
                     Text('Медетируйте  3-10 MIN',
                         style: AppTypography.f18w400
                             .copyWith(fontSize: 11)),
