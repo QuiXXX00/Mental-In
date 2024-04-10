@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smart/feature/auth/ui/welcome_screen.dart';
 
 import '../../home/ui/home_screen.dart';
+import '../../home/widget/bar.dart';
 
 
 class FirebaseStream extends StatelessWidget {
@@ -14,7 +15,7 @@ class FirebaseStream extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        return user != null ? ButtonBar() : WelcomeScreen();
+        return user != null ? BottonBar() : WelcomeScreen();
         }
     );
   }
