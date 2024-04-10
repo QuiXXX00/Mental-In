@@ -14,7 +14,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
         child: Row(
           children: <Widget>[
             InkWell(
-              onTap: (){FirebaseAuth.instance.signOut(); Navigator.pushReplacementNamed(context, '/');},
+              onTap: (){ Navigator.pushReplacementNamed(context, '/profile');},
               child: CircleAvatar(
                 backgroundImage: AssetImage('Assets/Profile.png'),
                 radius: 18,
@@ -31,13 +31,3 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: CustomAppBarAvatar(),
-      body: Container(
-        color: Colors.white,
-      ),
-    ),
-  ));
-}

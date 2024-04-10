@@ -11,15 +11,15 @@ import 'package:smart/feature/home/ui/home_screen.dart';
 class BottonBar extends StatelessWidget {
   BottonBar({super.key});
 
-  PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  PersistentTabController _controller = PersistentTabController(initialIndex: 2);
 
   List<Widget> _buildScreens() {
     return [
-      Test(),
       Rec(),
-      HomeScreen(),// Assuming Rec is the recommendation screen
+      Test(),
+      HomeScreen(),
+      Calendar(),// Assuming Rec is the recommendation screen
       Theory(),
-      Calendar()
     ];
   }
 

@@ -14,12 +14,8 @@ class FirebaseStream extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if (user != null) {
-            return HomeScreen();
-        } else {
-          return WelcomeScreen();
+        return user != null ? ButtonBar() : WelcomeScreen();
         }
-      }
     );
   }
 }
