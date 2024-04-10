@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white
       ),
-      initialRoute: "/",
+      initialRoute: "/bp",
       routes: {
         "/": (context) => const FirebaseStream(),
         "/Reg": (context) => RegestrationScreen(),

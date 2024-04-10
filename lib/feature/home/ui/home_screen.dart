@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarAvatar(),
+      appBar: CustomAppBarAvatar(text: ' ',),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('userProfile').snapshots(),
         builder: (context, snapshot) {
@@ -220,6 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               exp: 3,
                               asset1: 'Assets/icons/yoga.svg',
                             ),
+
                           ],
                         )
                       : isTasksSelected
