@@ -19,8 +19,9 @@ class MedWidHorizontal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InkWell(
+          borderRadius: BorderRadius.circular(10),
           onTap: (){},
-          child: Container(
+          child: Ink(
             decoration: BoxDecoration( borderRadius: BorderRadius.all(Radius.circular(10)),color: containerColor  ),
             width: 162,
             height: 111.23,

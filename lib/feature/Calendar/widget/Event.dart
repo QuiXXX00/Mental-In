@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 class Event {
   final String title;
-  Event(this.title);
+  final Color color;
+
+  Event(this.title, {required this.color});
 }

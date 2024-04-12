@@ -16,8 +16,9 @@ class MedWidBool extends StatelessWidget {
         : 'Assets/icons/GroupMedEbaniLuk.svg';
 
     return InkWell(
+      borderRadius: BorderRadius.circular(10),
       onTap: () {},
-      child: Container(
+      child: Ink(
         width: 168,
         height: 200,
         decoration: ShapeDecoration(

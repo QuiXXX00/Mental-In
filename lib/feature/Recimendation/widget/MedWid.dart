@@ -8,8 +8,9 @@ class MedWid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(10),
       onTap: () {},
-      child: Container(
+      child: Ink(
           width: double.infinity,
           height: 176,
           decoration: ShapeDecoration(

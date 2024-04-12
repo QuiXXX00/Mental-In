@@ -4,10 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:smart/feature/Calendar/ui/Calendar_main.dart';
 import 'package:smart/feature/Recimendation/ui/Recimendation_main.dart';
-import 'package:smart/feature/Test/ui/Test_main.dart';
+import 'package:smart/feature/Test/ui/Tests_main.dart';
 import 'package:smart/feature/Theory/ui/Theory_main.dart';
 import 'package:smart/feature/auth/ui/welcome_screen.dart';
 import 'package:smart/feature/home/ui/home_screen.dart';
+
+import '../../Test/ui/Testiki.dart';
 
 class BottonBar extends StatelessWidget {
   BottonBar({super.key});

@@ -93,6 +93,13 @@ class AppTypography {
     height: 0.05,
   );
 
+  static const alert =  TextStyle(
+    color: Color(0xFF3F414E),
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
+
 
 
 

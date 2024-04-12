@@ -7,6 +7,7 @@ import 'package:smart/feature/Recimendation/widget/PlayWid.dart';
 import 'package:smart/utils/AppTypography.dart';
 
 import '../../../widgets/bar/AppBarAvatar.dart';
+import '../../../widgets/bar/SliverCustomAppBar.dart';
 import '../widget/MedWidBool.dart';
 import '../widget/MedWidHorizontal.dart';
 import '../widget/daily_reminder.dart';
@@ -16,14 +17,15 @@ class Rec extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: CustomAppBarAvatar(text: 'Уделите время себе'),
           body: CustomScrollView(slivers: <Widget>[
+            CustomSliverAppBarAvatar(text: 'Уделите время себе',),
             SliverToBoxAdapter(
               child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: MedWid()),
             ),
+
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 10),

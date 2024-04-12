@@ -8,7 +8,8 @@ import 'package:smart/feature/Profile/ui/profile.dart';
 
 import 'feature/Calendar/ui/Calendar_main.dart';
 import 'feature/Recimendation/ui/Recimendation_main.dart';
-import 'feature/Test/ui/Test_main.dart';
+import 'feature/Test/ui/Testiki.dart';
+import 'feature/Test/ui/Tests_main.dart';
 import 'feature/Theory/ui/Theory_main.dart';
 import 'feature/auth/firebase/firebase_stream.dart';
 import 'feature/home/ui/home_screen.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white
       ),
-      initialRoute: "/home",
+      initialRoute: "/bp",
       routes: {
         "/": (context) => const FirebaseStream(),
         "/Reg": (context) => RegestrationScreen(),
@@ -50,7 +51,10 @@ class MyApp extends StatelessWidget {
         "/calendar" : (context) =>Calendar(),
         "/bp" : (context) => BottonBar(),
         "/profile" : (context) => Profile(),
-
+        "/testik" : (context) => EysenckTestScreen(),
+        // "/Reg2": (context) => registerSecondScreen(),
+        // "/UserProfile": (context) => TestApp(),
+        //
       },
 
     );
