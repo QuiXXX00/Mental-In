@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart/utils/AppTypography.dart';
 
 class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBarAvatar({Key? key, required this.text}) : super(key: key);
@@ -23,13 +24,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
                 backgroundColor: Colors.transparent,
               ),
             ),
-            Text(text,style: TextStyle(
-              color: Color(0xFF3F414E),
-              fontSize: 28,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0.04,
-            ),),
+            Text(text,style:AppTypography.AppBarText),
             SizedBox(width:18 ,height: 18,)
           ],
         ),

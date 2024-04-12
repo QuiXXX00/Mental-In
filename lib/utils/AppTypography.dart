@@ -100,6 +100,21 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
+  static const f14w400 =  TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
+  static const AppBarText =  TextStyle(
+    color: Color(0xFF3F414E),
+    fontSize: 28,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0.04,
+  );
+
+
 
 
 
