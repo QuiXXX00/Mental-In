@@ -9,6 +9,7 @@ import 'package:smart/widgets/customTextFild/custom_text_fild_Password.dart';
 import '../../../widgets/BottomSheet/snackbar.dart';
 import '../../../widgets/buttons/text_button_gradient.dart';
 import '../../../widgets/customTextFild/custom_text_fild.dart';
+import '../firebase/get_data.dart';
 
 class RegestrationScreen extends StatefulWidget {
   RegestrationScreen({super.key});
@@ -18,15 +19,14 @@ class RegestrationScreen extends StatefulWidget {
 }
 
 class _RegestrationScreenState extends State<RegestrationScreen> {
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
+  List<String> listOfTasks=[];
   final formKey = GlobalKey<FormState>();
 
   @override
-  void dispose(){
+  void dispose() {
     nameController.dispose();
     passwordController.dispose();
     emailController.dispose();
@@ -34,29 +34,44 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
     super.dispose();
   }
 
-  Future<void> reg() async{
-    final navigator =Navigator.of(context);
+  @override
+  void initState() {
+    super.initState();
+    GetData().getinfo().then((List<String> value) => setState(() {
+      listOfTasks = value;
+    }));
+    setState(() {
+
+      StoreData().dataupload(listOfTasks);
+    });
+  }
+
+  Future<void> reg() async {
+    final navigator = Navigator.of(context);
     final isValid = formKey.currentState!.validate();
 
-    if(!isValid) return;
+    if (!isValid) return;
 
-    try{
+    try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),);
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
       StoreData().postDetailsToFirestore(nameController.text.trim());
-    }on FirebaseAuthException catch(e){
-
-      if (e.code == 'email-already-in-use'){
-        SnackBarService.showSnackBar(context, 'Пользователь с таким email уже зарегистрирован.', true);
+      StoreData().dataupload(listOfTasks);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        SnackBarService.showSnackBar(
+            context, 'Пользователь с таким email уже зарегистрирован.', true);
         return;
-      }else {
-        SnackBarService.showSnackBar(context, 'Неизвестная ошибка! Попробуйте еше раз.', true);
-        return;}
+      } else {
+        SnackBarService.showSnackBar(
+            context, 'Неизвестная ошибка! Попробуйте еше раз.', true);
+        return;
+      }
     }
     navigator.pushNamedAndRemoveUntil('/Reg2', (Route<dynamic> route) => false);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,15 +117,16 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
                         angle: -3.14,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context).pushNamedAndRemoveUntil('/Well', (Route<dynamic> route) => false);
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                '/Well', (Route<dynamic> route) => false);
                           },
                           child: Container(
                             width: 55,
                             height: 55,
                             decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
-                                side:
-                                BorderSide(width: 1, color: Color(0xFFEBEAEC)),
+                                side: BorderSide(
+                                    width: 1, color: Color(0xFFEBEAEC)),
                                 borderRadius: BorderRadius.circular(38),
                               ),
                             ),
@@ -119,7 +135,6 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -145,8 +160,9 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
                   countCifra: 5,
                   text: 'Имя пользователя',
                   controller: nameController,
-                  validator: (value) => value != null && value.length  <0
-                      ? 'Имя не может быть пустым' : null,
+                  validator: (value) => value != null && value.length < 0
+                      ? 'Имя не может быть пустым'
+                      : null,
 
                   // Устанавливает фокус на это поле при открытии экрана
                 ),
@@ -155,17 +171,19 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
                   countCifra: 5,
                   text: 'Email',
                   controller: emailController,
-                  validator: (email)=> email != null && !EmailValidator.validate(email)
-                      ? 'Введите правильный email': null,
-
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                          ? 'Введите правильный email'
+                          : null,
                 ),
                 SizedBox(height: 10),
                 PasswordTextField(
                   text: 'Пароль',
                   text1: 'Пароль',
                   controller: passwordController,
-                  validator: (value) => value != null && value.length  <6
-                      ? 'Минимум 6 символов' : null,
+                  validator: (value) => value != null && value.length < 6
+                      ? 'Минимум 6 символов'
+                      : null,
                 ),
                 SizedBox(height: 10),
                 CustomTextButton(

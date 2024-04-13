@@ -4,6 +4,7 @@ import 'package:smart/feature/auth/ui/welcome_screen.dart';
 
 import '../../home/ui/home_screen.dart';
 import '../../home/widget/bar.dart';
+import 'get_data.dart';
 
 
 class FirebaseStream extends StatelessWidget {
@@ -11,6 +12,7 @@ class FirebaseStream extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final user = FirebaseAuth.instance.currentUser;
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),

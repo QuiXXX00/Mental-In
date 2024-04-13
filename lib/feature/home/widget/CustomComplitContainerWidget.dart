@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomContainerWidget extends StatefulWidget {
- CustomContainerWidget({
+class CustomComplitContainerWidget extends StatefulWidget {
+  CustomComplitContainerWidget({
     Key? key,
     required this.text,
     required this.exp,
@@ -13,7 +13,6 @@ class CustomContainerWidget extends StatefulWidget {
     required this.isButtonPressed,
     required this.index,
     required this.doc,
-
   }) : super(key: key);
 
   final String text;
@@ -22,16 +21,13 @@ class CustomContainerWidget extends StatefulWidget {
   bool isButtonPressed;
   String index;
   var doc;
-
-
-
   @override
-  _CustomContainerWidgetState createState() => _CustomContainerWidgetState();
+  _CustomComplitContainerWidgetState createState() =>
+      _CustomComplitContainerWidgetState();
 }
 
-class _CustomContainerWidgetState extends State<CustomContainerWidget> {
-
-
+class _CustomComplitContainerWidgetState
+    extends State<CustomComplitContainerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,12 +52,11 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             SvgPicture.network(
               widget.img,
               height: 58,
               width: 58,
-              color: widget.isButtonPressed ? Colors.black :Colors.white,
+              color: widget.isButtonPressed ? Colors.black : Colors.white,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,34 +89,37 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
                 setState(() {
                   User? user = FirebaseAuth.instance.currentUser;
 
-                      var snap = FirebaseFirestore.instance
-                          .collection('userProfile/${user?.uid}/isUncomplitTasks')
-                          .get()
-                          .then((docSnapshot) {
+                  var snap = FirebaseFirestore.instance
+                      .collection('userProfile/${user?.uid}/isComplitTasks')
+                      .get()
+                      .then((docSnapshot) {
 
-                        FirebaseFirestore.instance
-                            .collection('userProfile/${user?.uid}/isComplitTasks')
-                            .doc(widget.index)
-                            .set({
-                          'isComplit': false,
-                          'exp': docSnapshot.docs[widget.doc]
-                              .get('exp'),
-                          'imgurl': docSnapshot.docs[widget.doc]
-                              .get('imgurl'),
-                          'name': docSnapshot.docs[widget.doc]
-                              .get('name'),
-                        }, SetOptions(merge: true));
-                      });
-                    CollectionReference ref = FirebaseFirestore.instance
-                        .collection('userProfile/${user?.uid}/isUncomplitTasks');
-                    ref.doc(widget.index).delete();
+                    FirebaseFirestore.instance
+                        .collection('userProfile/${user?.uid}/isUncomplitTasks')
+                        .doc(widget.index)
+                        .set({
+                      'isComplit': true,
+                      'exp': docSnapshot.docs[widget.doc]
+                          .get('exp'),
+                      'imgurl': docSnapshot.docs[widget.doc]
+                          .get('imgurl'),
+                      'name': docSnapshot.docs[widget.doc]
+                          .get('name'),
+                    }, SetOptions(merge: true));
+                  });
+
+                  CollectionReference ref = FirebaseFirestore.instance
+                      .collection('userProfile/${user?.uid}/isComplitTasks');
+                  ref.doc(widget.index).delete();
                 });
               },
               icon: SvgPicture.asset(
-                widget.isButtonPressed ? 'Assets/icons/unCheck.svg' : 'Assets/icons/check.svg',
+                widget.isButtonPressed
+                    ? 'Assets/icons/unCheck.svg'
+                    : 'Assets/icons/check.svg',
                 height: 24,
                 width: 24,
-                color:  widget.isButtonPressed ? Colors.black : Colors.white,
+                color: widget.isButtonPressed ? Colors.black : Colors.white,
               ),
             ),
           ],

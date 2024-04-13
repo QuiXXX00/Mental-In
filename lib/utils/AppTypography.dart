@@ -23,7 +23,7 @@ class AppTypography {
   static const HelveticaNeue14 = TextStyle(
     color: Color(0xFFA1A4B2),
     fontSize: 14,
-    fontFamily: 'HelveticaNeue',
+    fontFamily: 'Helvetica',
     fontWeight: FontWeight.w700,
     height: 0.08,
     letterSpacing: 0.70,
@@ -52,7 +52,13 @@ class AppTypography {
     fontWeight: FontWeight.w800,
     height: 0,
   );
-
+  static const f20w600Black = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 0,
+  );
   static const f10w600 =  TextStyle(
       color: Color(0xFF818181),
       fontSize: 10,

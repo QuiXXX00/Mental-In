@@ -27,12 +27,16 @@ class GetData{
   }
 
 
-  Future<String> getinfo(String tag) async {
-    if (user != null) {
-      var snap = await FirebaseFirestore.instance.collection(
-          'Tasks').doc('n3gAvZYcqbh7izv41Kvk').get();
-      Map<String, dynamic>? data = snap.data();
-      return await data?['$tag'];
-    }else return  "Информация не найдена";
+  Future<List<String>> getinfo()  async{
+    List<String> Tasks = [];
+      await FirebaseFirestore.instance.collection('Tasks').get().then(
+            (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            Tasks.add(docSnapshot.id);
+
+          }
+        }
+      );
+      return Tasks ;
   }
 }

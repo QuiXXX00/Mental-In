@@ -10,7 +10,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       title: Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: Row(
@@ -21,7 +21,7 @@ class CustomAppBarAvatar extends StatelessWidget implements PreferredSizeWidget 
               child: CircleAvatar(
                 backgroundImage: AssetImage('Assets/Profile.png'),
                 radius: 18,
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
               ),
             ),
             Text(text,style:AppTypography.AppBarText),
