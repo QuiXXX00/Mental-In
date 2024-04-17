@@ -5,6 +5,7 @@ import 'package:smart/feature/Calendar/widget/Event.dart';
 import 'package:smart/utils/AppTypography.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../utils/colors2.dart';
 import '../../../widgets/bar/AppBarAvatar.dart';
 
 class Calendar extends StatefulWidget {
@@ -114,12 +115,10 @@ class _CalendarState extends State<Calendar> {
     return MaterialApp(
       home: Scaffold(
         appBar: CustomAppBarAvatar(text: 'Дневник'),
-
         resizeToAvoidBottomInset: false,
         floatingActionButton: Container(
           margin: EdgeInsets.only(bottom: 20.0),
           child: FloatingActionButton(
-            
             onPressed: () {
               showModalBottomSheet(
                 context: context,
@@ -244,8 +243,8 @@ class _CalendarState extends State<Calendar> {
                 height: 30,
               ),
               InkWell(
-                  borderRadius: BorderRadius.circular(24),
-
+                splashColor: AppColors.lightViolet,
+                borderRadius: BorderRadius.circular(24),
                 onTap: () {
                   setState(() {
                     _calendarFormat = _calendarFormat == CalendarFormat.month
@@ -311,7 +310,6 @@ class _CalendarState extends State<Calendar> {
                       );
                     }
                     return ListView.builder(
-
                       itemCount: value.length,
                       itemBuilder: (context, index) {
                         final event = value[index];

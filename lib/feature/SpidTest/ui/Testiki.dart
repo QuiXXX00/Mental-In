@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart/utils/AppTypography.dart';
+import 'package:smart/utils/colors2.dart';
 import '../../../widgets/bar/AppBarAvatar.dart';
 import '../../../widgets/buttons/custom_text_batton.dart';
 import '../questions.dart'; // Импортируйте список вопросов
@@ -27,7 +28,7 @@ class _EysenckTestScreenState extends State<EysenckTestScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Personality Test ($answeredQuestionsCount/$totalQuestionsCount)',
+          'Тест Айзенка ($answeredQuestionsCount/$totalQuestionsCount)',
           style: AppTypography.AppBarText,
         ),
       ),
@@ -97,44 +98,44 @@ class QuestionTile extends StatelessWidget {
         ),
         trailing: isAnswered
             ? answer != null
-            ? answer!
-            ? Icon(
-          Icons.check_circle,
-          color: Color(0xFF2FEA9B),
-          size: 30,
-        ) // Ответ "Да"
-            : Icon(
-          Icons.cancel,
-          color: Colors.red,
-          size: 30,
-        ) // Ответ "Нет"
-            : null
+                ? answer!
+                    ? Icon(
+                        Icons.check_circle,
+                        color: Color(0xFF2FEA9B),
+                        size: 30,
+                      ) // Ответ "Да"
+                    : Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                        size: 30,
+                      ) // Ответ "Нет"
+                : null
             : null,
         onTap: () {
           if (!isAnswered) {
             // Показываем диалог выбора ответа
             showDialog(
               context: context,
-              builder: (context) =>
-                  AlertDialog(
-                    title: Text(question),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          onAnswerSelected(true);
-                        },
-                        child: Text('Да'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          onAnswerSelected(false);
-                        },
-                        child: Text('Нет'),
-                      ),
-                    ],
+              builder: (context) => AlertDialog(
+                backgroundColor: AppColors.violet,
+                title: Text(question,style: AppTypography.f14w400,),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      onAnswerSelected(true);
+                    },
+                    child: Text('Да',style: AppTypography.f14w400,),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      onAnswerSelected(false);
+                    },
+                    child: Text('Нет',style: AppTypography.f14w400,),
+                  ),
+                ],
+              ),
             );
           }
         },
@@ -230,15 +231,15 @@ class ResultScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBarAvatar(text: 'Результат',),
+      appBar: CustomAppBarAvatar(
+        text: 'Результат',
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
-
               Container(
                 decoration: ShapeDecoration(
                   color: Color(0xFF8E97FD),
@@ -264,20 +265,20 @@ class ResultScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Text(
                           'Тест Айзенка был разработан автором в 1963 году и приобрел популярность, как опросник «EPI». Он способен определить нейропсихическую лабильность, экстраверсию – интроверсию. В 1968г. к нему была добавлена шкала психотизма. С тех пор адаптированный тест Айзенка известен миру, как опросник «EPQ»(его иногда называют «PEN»).'),
                       SizedBox(
                         height: 20,
                       ),
-
                       RichText(
                           textDirection: TextDirection.ltr,
                           text: TextSpan(
                               text: 'Темперамент по шкале экстраверсии: ',
-                              style:
-                              AppTypography.f14w400.copyWith(color: Colors
-                                  .black),
+                              style: AppTypography.f14w400
+                                  .copyWith(color: Colors.black),
                               children: <TextSpan>[
                                 TextSpan(
                                     text: '$extraversionResult',
@@ -285,7 +286,6 @@ class ResultScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black))
                               ])),
-
                       SizedBox(
                         height: 10,
                       ),
@@ -293,9 +293,8 @@ class ResultScreen extends StatelessWidget {
                           textDirection: TextDirection.ltr,
                           text: TextSpan(
                               text: 'Темперамент по шкале нейротизма: ',
-                              style:
-                              AppTypography.f14w400.copyWith(color: Colors
-                                  .black),
+                              style: AppTypography.f14w400
+                                  .copyWith(color: Colors.black),
                               children: <TextSpan>[
                                 TextSpan(
                                     text: '$neuroticismResult',
@@ -303,8 +302,6 @@ class ResultScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black))
                               ])),
-
-
                     ],
                   ),
                 ),
@@ -315,11 +312,13 @@ class ResultScreen extends StatelessWidget {
                   isActive: true,
                   text: 'Понял',
                   callback: () {
-                    Navigator.of(context, rootNavigator: true).pushNamedAndRemoveUntil('/bp', (route) => false);
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamedAndRemoveUntil('/bp', (route) => false);
                   },
                   height: 42,
                   width: 288.14,
-                  border: 10,),
+                  border: 10,
+                ),
               )
             ],
           ),

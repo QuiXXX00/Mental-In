@@ -5,10 +5,8 @@ class AppTypography {
   const AppTypography._();
 
   static const _colorBlack = Colors.black;
-  static const _lightGray = AppColors.lightGray;
-  static const _white = Colors.white;
-  static const _red = AppColors.red;
-  static const _grey = AppColors.dark;
+
+
   static const _font = TextStyle(
     fontFamily: 'Poppins',
   );
@@ -88,7 +86,6 @@ class AppTypography {
     fontSize: 18,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
-    height: 0.06,
   );
 
   static const f24w400 =  TextStyle(
@@ -117,7 +114,6 @@ class AppTypography {
     fontSize: 28,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
-    height: 0.04,
   );
 
 

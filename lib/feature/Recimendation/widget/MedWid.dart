@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/AppTypography.dart';
+import '../../../utils/colors2.dart';
 import 'PlayWid.dart';
 
 class MedWid extends StatelessWidget {

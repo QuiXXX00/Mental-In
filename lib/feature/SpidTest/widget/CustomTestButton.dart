@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/colors2.dart';
+
 class TestContainerWidget extends StatelessWidget {
   final String title;
+  final String description;
   final Function() onTap;
   final String time;
 
-
-
   const TestContainerWidget({
-    Key? key, required this.title, required this.time, required this.onTap,
-
+    Key? key,
+    required this.title,
+    required this.time,
+    required this.onTap,
+    required this.description,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      splashColor: AppColors.pageBackground,
       onTap: onTap,
       child: Ink(
-
         width: double.infinity,
-        height: 136,
         decoration: BoxDecoration(
           color: Color(0xFF8E97FD),
           borderRadius: BorderRadius.circular(10),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('Assets/Group 481742.png'),
             fit: BoxFit.cover,
           ),
@@ -37,12 +41,11 @@ class TestContainerWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 243,
-                    height: 32.93,
                     child: Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 16,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w600,
                         height: 0,
@@ -54,15 +57,14 @@ class TestContainerWidget extends StatelessWidget {
                     height: 40,
                     decoration: BoxDecoration(
                         color: Color(0xFF8E97FD),
-                        borderRadius: BorderRadius.circular(99)
-                    ),
+                        borderRadius: BorderRadius.circular(99)),
                     child: Center(
                       child: Text(
-                        '$timeмин',
+                        '$time',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 6,
+                          fontSize: 8,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
                         ),
@@ -74,13 +76,12 @@ class TestContainerWidget extends StatelessWidget {
               SizedBox(
                 width: 343,
                 child: Text(
-                  'хуйня для описания, ты про плюсы большого челена?',
-                  style: TextStyle(
+                  description,
+                  style: const TextStyle(
                     color: Color(0xFF161616),
-                    fontSize: 8,
+                    fontSize: 10,
                     fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               )

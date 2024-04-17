@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smart/feature/auth/firebase/get_data.dart';
 import 'package:smart/utils/AppTypography.dart';
 
+import '../../../utils/colors2.dart';
 import '../../../widgets/bar/AppBarAvatar.dart';
 import '../../auth/firebase/save_data.dart';
 import '../widget/CustomComplitContainerWidget.dart';
@@ -108,6 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        splashColor: AppColors.lightViolet,
                         onTap: () {
                           setState(() {
                             isDailySelected = true;
@@ -154,6 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       InkWell(
+                        splashColor: AppColors.lightViolet,
+                        borderRadius: BorderRadius.circular(12),
                         onTap: () {
                           setState(() {
                             isDailySelected = false;
@@ -191,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 3,
                                       color: isDailySelected
                                           ? Colors.transparent
-                                          : Color(0xFF8E97FD),
+                                          :  AppColors.violet,
                                     ),
                                   ),
                                 ),

@@ -4,12 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:smart/feature/Calendar/ui/Calendar_main.dart';
 import 'package:smart/feature/Recimendation/ui/Recimendation_main.dart';
-import 'package:smart/feature/Test/ui/Tests_main.dart';
 import 'package:smart/feature/Theory/ui/Theory_main.dart';
 import 'package:smart/feature/auth/ui/welcome_screen.dart';
 import 'package:smart/feature/home/ui/home_screen.dart';
 
-import '../../Test/ui/Testiki.dart';
+import '../../SpidTest/ui/Tests_main.dart';
 
 class BottonBar extends StatelessWidget {
   BottonBar({super.key});
@@ -29,27 +28,28 @@ class BottonBar extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('Assets/icons/meditation.svg'),
+        icon: SvgPicture.asset('Assets/icons/meditation.svg',width: 23,height: 23,),
         activeColorPrimary: Color(0xFF8E97FD),
         inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('Assets/icons/Group 30.svg'),
+        icon: SvgPicture.asset('Assets/icons/Group 30.svg',width: 23,height: 23,),
         activeColorPrimary: Color(0xFF8E97FD),
         inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('Assets/icons/Group 29.svg',color: Color(0xFFA0A3B1),),
+        icon: SvgPicture.asset('Assets/icons/Group 29.svg',color: Color(0xFFA0A3B1),width: 34,height: 34,),
         activeColorPrimary: Color(0xFF8E97FD),
         inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('Assets/icons/Group 28.svg'),
+        icon: SvgPicture.asset('Assets/icons/Group 28.svg',width: 23,height: 23,),
         activeColorPrimary: Color(0xFF8E97FD),
         inactiveColorPrimary: CupertinoColors.white,
+
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('Assets/icons/Group 27.svg'),
+        icon: SvgPicture.asset('Assets/icons/Group 27.svg',width: 23,height: 23,),
         activeColorPrimary: Color(0xFF8E97FD),
         inactiveColorPrimary: CupertinoColors.white,
       ),

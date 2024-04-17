@@ -24,9 +24,8 @@ class DailyReminder extends StatelessWidget {
           children: [
             SizedBox(
               width: 285,
-              height: 26,
               child: Padding(
-                padding: const EdgeInsets.only(left: 22),
+                padding: const EdgeInsets.only(left: 22,top: 20,bottom: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
