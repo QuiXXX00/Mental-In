@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/colors2.dart';
+import '../../../widgets/bar/AppBarAvatar.dart';
+import '../../Recimendation/widget/PlayWid.dart';
 import '../../auth/firebase/get_data.dart';
-
-
+import '../widgets/TheoryCont.dart';
 
 class Theory extends StatefulWidget {
   @override
@@ -11,31 +13,42 @@ class Theory extends StatefulWidget {
 
 class _TheoryState extends State<Theory> {
   String username = '';
-  @override
-  void initState() {
-    super.initState();
-    GetData().getuser().then((v) {
-      setState(() {
-        username = v;
-      });
-    });}
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Theory Text'),
-        ),
-        body: Center(
-          child: Text(
-            'Theory $username',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: CustomAppBarAvatar(text: 'Справочник'),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: ThepryCont(
+                  time: '10',
+                  chapter: 'Стресс',
+                  description: 'Найдите свой внутренний мир ',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed('/stat');
+                  },
+                )),
           ),
-        ),
+          SliverToBoxAdapter(
+            child: Padding(
+                padding:
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: ThepryCont(
+                  time: '20',
+                  chapter: 'Выгорание',
+                  description: 'Найдите свой внутренний мир ',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed('/stat2');
+                  },
+                )),
+          )
+        ],
       ),
     );
   }

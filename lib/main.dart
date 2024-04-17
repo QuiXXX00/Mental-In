@@ -12,6 +12,8 @@ import 'feature/Recimendation/ui/Recimendation_main.dart';
 import 'feature/SpidTest/ui/Testik3.dart';
 import 'feature/SpidTest/ui/Testiki.dart';
 import 'feature/SpidTest/ui/Tests_main.dart';
+import 'feature/Theory/ui/ArticleScreen.dart';
+import 'feature/Theory/ui/ArticleScreen2.dart';
 import 'feature/Theory/ui/Theory_main.dart';
 import 'feature/auth/firebase/firebase_stream.dart';
 import 'feature/home/ui/home_screen.dart';
@@ -56,6 +58,8 @@ class MyApp extends StatelessWidget {
         "/testik" : (context) => EysenckTestScreen(),
         "/testik2" : (context) => PsychologicalAgeTestScreen(),
         "/testik3" : (context) => AnxietyTestScreen(),
+        "/stat" : (context) => ArticleScreen(),
+        "/stat2" : (context) => ArticleScreen2(),
         // "/Reg2": (context) => registerSecondScreen(),
         // "/UserProfile": (context) => TestApp(),
         //

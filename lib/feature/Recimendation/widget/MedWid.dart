@@ -73,7 +73,7 @@ class MedWid extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  left: 20, top: 112, child: CustomWidgetPlay()),
+                  left: 20, top: 112, child: CustomWidgetPlay(time: '10',)),
               Positioned(
                   left: 20,
                   top: 147,

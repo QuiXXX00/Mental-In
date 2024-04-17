@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomWidgetPlay extends StatelessWidget {
+  final String time;
+
+  const CustomWidgetPlay({
+    Key? key, required this.time,
+
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -53,7 +60,7 @@ class CustomWidgetPlay extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '10 min',
+                  '$time min',
                   style: TextStyle(
                     color: Color(0xFF0E1117),
                     fontSize: 10,
