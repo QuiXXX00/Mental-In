@@ -47,6 +47,20 @@ class _TheoryState extends State<Theory> {
                         .pushNamed('/stat2');
                   },
                 )),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+                padding:
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: ThepryCont(
+                  time: '20',
+                  chapter: 'Медитации',
+                  description: 'Найдите свой внутренний мир ',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed('/stat3');
+                  },
+                )),
           )
         ],
       ),

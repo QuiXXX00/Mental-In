@@ -3,6 +3,16 @@ import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
 class ArticleScreen extends StatefulWidget {
+
+  final String txt;
+  final String description;
+
+  const ArticleScreen({
+    Key? key, required this.txt, required this.description,
+
+  }) : super(key: key);
+
+
   @override
   _ArticleScreenState createState() => _ArticleScreenState();
 }
@@ -17,7 +27,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Future<void> _loadArticleText() async {
-    String text = await rootBundle.loadString('Assets/text/ssss.txt');
+    String text = await rootBundle.loadString('Assets/text/${widget.txt}');
     setState(() {
       articleText = text;
     });
@@ -28,7 +38,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Статья “Как побороть стресс”',style: TextStyle(
+        title: Text('${widget.description}',style: TextStyle(
           color: Colors.black,
           fontSize: 16,
           fontFamily: 'Poppins',
@@ -51,4 +61,3 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
   }
 }
-
