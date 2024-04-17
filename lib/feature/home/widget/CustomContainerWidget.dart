@@ -14,6 +14,7 @@ class CustomContainerWidget extends StatefulWidget {
     required this.index,
     required this.doc,
 
+
   }) : super(key: key);
 
   final String text;
@@ -22,6 +23,7 @@ class CustomContainerWidget extends StatefulWidget {
   bool isButtonPressed;
   String index;
   var doc;
+
 
 
 
@@ -111,6 +113,10 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
                           'name': docSnapshot.docs[widget.doc]
                               .get('name'),
                         }, SetOptions(merge: true));
+                        //widget.Totalexp += int.parse(docSnapshot.docs[widget.doc]
+                        //    .get('exp'));
+                        //widget.callback(int.parse(docSnapshot.docs[widget.doc]
+                       //     .get('exp')));
                       });
                     CollectionReference ref = FirebaseFirestore.instance
                         .collection('userProfile/${user?.uid}/isUncomplitTasks');

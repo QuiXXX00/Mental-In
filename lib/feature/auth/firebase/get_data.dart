@@ -1,12 +1,15 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+final user = FirebaseAuth.instance.currentUser;
 
 class GetData{
-  final user = FirebaseAuth.instance.currentUser;
+
 
   Future<String> getuser() async {
     if (user != null) {
@@ -25,7 +28,17 @@ class GetData{
       return await data?['imgURL'];
     }else return  "Изображение не найдено";
   }
-
+  Future<List<String>> getusers()  async {
+    List<String> users = [];
+    await FirebaseFirestore.instance.collection('userProfile').get().then(
+            (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            users.add(docSnapshot.id);
+          }
+        }
+    );
+    return users;
+  }
 
   Future<List<String>> getinfo()  async{
     List<String> Tasks = [];
@@ -39,4 +52,25 @@ class GetData{
       );
       return Tasks ;
   }
+
+  Future<Map<String, dynamic>?> getlvls()  async{
+
+    var lvls = await FirebaseFirestore.instance.collection('userProfile').doc(user?.uid).get();
+
+    return lvls.data() ;
+  }
+
+  Future<int> getexp()  async{
+    int Totalexp=0;
+    await  FirebaseFirestore.instance.collection('userProfile/${user?.uid}/isComplitTasks').get().then(
+           (querySnapshot) {
+         for (var docSnapshot in querySnapshot.docs) {
+           Totalexp += int.parse(docSnapshot.get('exp'));
+
+         }
+       }
+   );
+    return Totalexp ;
+  }
 }
+

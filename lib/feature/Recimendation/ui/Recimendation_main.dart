@@ -17,8 +17,8 @@ class Rec extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: CustomAppBarAvatar(text: 'Уделите время себе',),
           body: CustomScrollView(slivers: <Widget>[
-            CustomSliverAppBarAvatar(text: 'Уделите время себе',),
             SliverToBoxAdapter(
               child: Padding(
                   padding:
@@ -45,9 +45,9 @@ class Rec extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 27),
+                padding: EdgeInsets.only(left: 20, right: 20, top: 27),
                 child: Text('Рекомендации для тебя',style: AppTypography.f24w400,),
               ),
             ),
@@ -68,7 +68,7 @@ class Rec extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(height: 50,),
             )
           ])),

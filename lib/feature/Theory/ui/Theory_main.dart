@@ -27,7 +27,7 @@ class _TheoryState extends State<Theory> {
                 child: ThepryCont(
                   time: '10',
                   chapter: 'Стресс',
-                  description: 'Найдите свой внутренний мир ',
+                  description: 'Абстрогируйтесь от проблем',
                   onTap: () {
                     Navigator.of(context, rootNavigator: true)
                         .pushNamed('/stat');
@@ -41,7 +41,7 @@ class _TheoryState extends State<Theory> {
                 child: ThepryCont(
                   time: '20',
                   chapter: 'Выгорание',
-                  description: 'Найдите свой внутренний мир ',
+                  description: 'Зажгите огонь внутри себя ',
                   onTap: () {
                     Navigator.of(context, rootNavigator: true)
                         .pushNamed('/stat2');

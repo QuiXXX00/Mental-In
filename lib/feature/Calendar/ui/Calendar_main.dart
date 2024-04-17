@@ -46,7 +46,7 @@ class _CalendarState extends State<Calendar> {
         _colorOptions.first; // Установка начального выбранного цвета
   }
 
-  List<Color> _colorOptions = [
+  final List<Color> _colorOptions = [
     Color(0xFFEE917F),
     Color(0xFFA0E3D4),
     Color(0xFFE8C295),
@@ -69,12 +69,13 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
-    if (!isSameDay(_selectedDay, selectedDay))
+    if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
         _selectedEvents.value = _getEventsForDay(selectedDay);
       });
+    }
   }
 
   List<Event> _getEventsForDay(DateTime day) {
@@ -160,7 +161,7 @@ class _CalendarState extends State<Calendar> {
                           TextField(
                             controller: _eventController,
                             decoration: InputDecoration(
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Color(0xFF959595),
                                   fontSize: 13,
                                   fontFamily: 'Poppins',
@@ -211,7 +212,7 @@ class _CalendarState extends State<Calendar> {
                                     child: Center(
                                       child: Text(
                                         _colorTexts[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 13,
                                           fontFamily: 'Poppins',

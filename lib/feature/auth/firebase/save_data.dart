@@ -31,25 +31,6 @@ class StoreData {
     ref.doc(user!.uid).set({'name': name});
   }
 
-  dataupdate(List listOfTasks,) {
-    User? user = FirebaseAuth.instance.currentUser;
-    var snap = FirebaseFirestore.instance
-        .collection('Tasks')
-        .get()
-        .then((querysnapshot) {
-      for (var docSnapshot in querysnapshot.docs) {
-        FirebaseFirestore.instance
-            .collection('userProfile/${user?.uid}/isComplitTasks')
-            .doc(docSnapshot.id)
-            .set({
-          'isComplit': true,
-          'exp': docSnapshot.get('exp'),
-          'imgurl': docSnapshot.get('imgurl'),
-          'name': docSnapshot.get('name'),
-        }, SetOptions(merge: true));
-      }
-    });
-    }
   dataupload(List listOfTasks,) {
     User? user = FirebaseAuth.instance.currentUser;
     var snap = FirebaseFirestore.instance
@@ -68,6 +49,51 @@ class StoreData {
         }, SetOptions(merge: true));
       }
     });
+  }
+  changeLvls(int exp,){
+    switch (exp){
+      case <10:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 1},SetOptions(merge: true));
+        break;
+      case >=10 && <20 :
+        FirebaseFirestore.instance.collection('userProfile')
+        .doc(user!.uid).set({'healthlvl': 2,'studylvl': 2},SetOptions(merge: true));
+        break;
+      case >=20 && <30:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 3,'psihlvl': 2},SetOptions(merge: true));
+        break;
+      case >=30 && <40:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 4,'studylvl': 3},SetOptions(merge: true));
+        break;
+      case >=40 && <50:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 5},SetOptions(merge: true));
+        break;
+      case >=50 && <60:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 6,'psihlvl': 3,'studylvl': 4},SetOptions(merge: true));
+        break;
+      case >=60 && <70:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 7},SetOptions(merge: true));
+        break;
+      case >=70 && <80:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 8,'studylvl': 5},SetOptions(merge: true));
+        break;
+      case >=80 && <90:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 9,'psihlvl': 4},SetOptions(merge: true));
+        break;
+      case >=90 && <100:
+        FirebaseFirestore.instance.collection('userProfile')
+            .doc(user!.uid).set({'healthlvl': 10,'psihlvl': 5,'studylvl': 6},SetOptions(merge: true));
+        break;
+
+    }
   }
 }
 

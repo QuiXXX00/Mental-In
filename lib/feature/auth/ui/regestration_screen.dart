@@ -22,7 +22,7 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  List<String> listOfTasks=[];
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -34,17 +34,7 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    GetData().getinfo().then((List<String> value) => setState(() {
-      listOfTasks = value;
-    }));
-    setState(() {
 
-      StoreData().dataupload(listOfTasks);
-    });
-  }
 
   Future<void> reg() async {
     final navigator = Navigator.of(context);
@@ -58,7 +48,6 @@ class _RegestrationScreenState extends State<RegestrationScreen> {
         password: passwordController.text.trim(),
       );
       StoreData().postDetailsToFirestore(nameController.text.trim());
-      StoreData().dataupload(listOfTasks);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         SnackBarService.showSnackBar(

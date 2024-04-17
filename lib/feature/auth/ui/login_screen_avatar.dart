@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/buttons/custom_text_batton.dart';
 import '../../../widgets/conteiners/ImageSwitcher.dart';
+import '../firebase/get_data.dart';
+import '../firebase/save_data.dart';
 
 class LoginScreenAvatar extends StatefulWidget {
   LoginScreenAvatar({super.key});
@@ -14,8 +16,19 @@ class LoginScreenAvatar extends StatefulWidget {
 }
 
 class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
-
+  List<String> listOfTasks=[];
  int index = 0 ;
+ @override
+ void initState() {
+   super.initState();
+   GetData().getinfo().then((List<String> value) => setState(() {
+     listOfTasks = value;
+   }));
+   setState(() {
+
+     StoreData().dataupload(listOfTasks);
+   });
+ }
 
  callback(newindex) {
    setState(() {
@@ -31,9 +44,9 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
   Future<void> uploadimg() async {
     var user = FirebaseAuth.instance.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('userProfile');
-    ref.doc(user!.uid).set({'imgURL': charactersURL[index]}, SetOptions(merge: true));
+    ref.doc(user!.uid).set({'imgURL': charactersURL[index],'healthlvl': 1, 'psihlvl': 1, 'studylvl': 1,}, SetOptions(merge: true));
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/bp', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
 }
 
   @override

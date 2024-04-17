@@ -11,16 +11,16 @@ class CustomComplitContainerWidget extends StatefulWidget {
     required this.exp,
     required this.img,
     required this.isButtonPressed,
-    required this.index,
-    required this.doc,
+
+
   }) : super(key: key);
 
   final String text;
   final int exp;
   final String img;
   bool isButtonPressed;
-  String index;
-  var doc;
+
+
   @override
   _CustomComplitContainerWidgetState createState() =>
       _CustomComplitContainerWidgetState();
@@ -84,36 +84,7 @@ class _CustomComplitContainerWidgetState
                 ),
               ],
             ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  User? user = FirebaseAuth.instance.currentUser;
-
-                  var snap = FirebaseFirestore.instance
-                      .collection('userProfile/${user?.uid}/isComplitTasks')
-                      .get()
-                      .then((docSnapshot) {
-
-                    FirebaseFirestore.instance
-                        .collection('userProfile/${user?.uid}/isUncomplitTasks')
-                        .doc(widget.index)
-                        .set({
-                      'isComplit': true,
-                      'exp': docSnapshot.docs[widget.doc]
-                          .get('exp'),
-                      'imgurl': docSnapshot.docs[widget.doc]
-                          .get('imgurl'),
-                      'name': docSnapshot.docs[widget.doc]
-                          .get('name'),
-                    }, SetOptions(merge: true));
-                  });
-
-                  CollectionReference ref = FirebaseFirestore.instance
-                      .collection('userProfile/${user?.uid}/isComplitTasks');
-                  ref.doc(widget.index).delete();
-                });
-              },
-              icon: SvgPicture.asset(
+             SvgPicture.asset(
                 widget.isButtonPressed
                     ? 'Assets/icons/unCheck.svg'
                     : 'Assets/icons/check.svg',
@@ -121,7 +92,6 @@ class _CustomComplitContainerWidgetState
                 width: 24,
                 color: widget.isButtonPressed ? Colors.black : Colors.white,
               ),
-            ),
           ],
         ),
       ),
