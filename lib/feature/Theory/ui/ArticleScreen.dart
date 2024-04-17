@@ -39,7 +39,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
         padding: EdgeInsets.all(16.0),
         child: Text(
           articleText.isNotEmpty ? articleText : 'Загрузка...',
-          style: TextStyle(fontSize: 16.0),
+          style:  TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+            height: 0,
+          ),
         ),
       ),
     );

@@ -28,21 +28,29 @@ class _ArticleScreenState extends State<ArticleScreen2> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Эмоциональное выгорание',style: TextStyle(
-          color: Colors.black,
-          fontSize: 16,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w400,
-        ),),
+        title: Text(
+          'Эмоциональное выгорание',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Text(
           articleText.isNotEmpty ? articleText : 'Загрузка...',
-          style: TextStyle(fontSize: 16.0),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+            height: 0,
+          ),
         ),
       ),
     );
   }
 }
-
