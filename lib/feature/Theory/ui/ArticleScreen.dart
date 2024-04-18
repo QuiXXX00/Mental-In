@@ -76,8 +76,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Text(
+          textAlign: TextAlign.justify, // Выравнивание текста
           articleText.isNotEmpty ? articleText : 'Загрузка...',
           style: TextStyle(
+
             color: Colors.black,
             fontSize: 16,
             fontFamily: 'Poppins',

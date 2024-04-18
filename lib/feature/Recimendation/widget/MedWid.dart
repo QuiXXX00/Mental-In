@@ -35,15 +35,7 @@ class MedWid extends StatelessWidget {
                 top: 103,
                 child: SvgPicture.asset(
                     'Assets/icons/Plant 2.svg'),),
-              Positioned(
-                left: 178,
-                top: 120,
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('Assets/Rectangle.png'),
-                          fit: BoxFit.cover)),
-                ),),
+
               Positioned(
                 left: 175,
                 top: 20,

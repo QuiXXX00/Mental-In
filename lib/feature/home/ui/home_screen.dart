@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +18,8 @@ import '../../../widgets/bar/AppBarAvatar.dart';
 import '../../auth/firebase/save_data.dart';
 import '../widget/CustomComplitContainerWidget.dart';
 import '../widget/CustomContainerWidget.dart';
+import '../widget/Time.dart';
+import '../widget/YourCustomLoadingWidget.dart';
 import '../widget/user_profile_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,6 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   List<String> users = [];
   int Totalexp = 0;
+  late Timer _timer;
+
+
 
   @override
   void initState() {
@@ -43,7 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    _timer.cancel(); // Отменяем таймер при удалении виджета
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    String greeting = getGreeting();
     return Scaffold(
       appBar: const CustomAppBarAvatar(
         text: '',
@@ -69,17 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          snapshot.data!.docs[users.indexOf(user!.uid)]
-                                      .get('name') !=
-                                  null
+                          snapshot.data!.docs[users.indexOf(user!.uid)].get('name') != null
                               ? Text(
-                                  'Доброе утро, ${snapshot.data!.docs[users.indexOf(user!.uid)].get('name')}',
-                                  style: AppTypography.f28w400,
-                                )
+                            '$greeting, ${snapshot.data!.docs[users.indexOf(user!.uid)].get('name')}',
+                            style: AppTypography.f28w400,
+                          )
                               : const Text(
-                                  'Доброе утро, ...',
-                                  style: AppTypography.f28w400,
-                                ),
+                            'Доброе утро, ...',
+                            style: AppTypography.f28w400,
+                          ),
                         ],
                       ),
                     ),
@@ -99,11 +111,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.network(
-                              snapshot.data!.docs[users.indexOf(user!.uid)]
+                            CachedNetworkImage(
+                              imageUrl: snapshot.data!.docs[users.indexOf(user!.uid)]
                                   .get('imgURL'),
+
                               width: 140,
                               height: 270,
+                              placeholder: (context, url) => YourCustomLoadingWidget(), // Показываем индикатор загрузки во время загрузки изображения
+                              errorWidget: (context, url, error) => Icon(Icons.error), // Показываем иконку ошибки, если изображение не загружено
                             ),
                             const SizedBox(
                               width: 15,
@@ -262,7 +277,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               int index) {
                                             return Padding(
                                               padding:
-                                                  const EdgeInsets.all(5.0),
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 15,
+                                                      horizontal: 20),
                                               child: CustomContainerWidget(
                                                 text: snapshot.data!.docs[index]
                                                     .get('name'),
@@ -280,6 +297,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               ),
                                             );
                                           }),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
                                     )
                                   ],
                                 ),

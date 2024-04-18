@@ -35,6 +35,7 @@ class TestContainerWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(21),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +75,8 @@ class TestContainerWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 343,
+                width: 300,
+
                 child: Text(
                   description,
                   style: const TextStyle(

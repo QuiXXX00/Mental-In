@@ -12,6 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   flutter_localizations:
     sdk: flutter
 
@@ -53,12 +54,16 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   table_calendar: ^3.0.9
   go_router: ^13.2.4
+  url_launcher: ^6.0.12
 
   firebase_auth: ^4.19.0
   email_validator: ^2.1.17
   firebase_storage: ^11.7.0
   cloud_firestore: ^4.16.0
   firebase_helpers: ^0.6.1
+  audioplayers: ^6.0.0
+  custom_timer: ^0.2.3
+
 
 dev_dependencies:
   flutter_test:

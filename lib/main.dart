@@ -8,6 +8,7 @@ import 'package:smart/feature/SpidTest/ui/Testik2.dart';
 
 
 import 'feature/Calendar/ui/Calendar_main.dart';
+import 'feature/Recimendation/ui/MeditationScreen.dart';
 import 'feature/Recimendation/ui/Recimendation_main.dart';
 import 'feature/SpidTest/ui/Testik3.dart';
 import 'feature/SpidTest/ui/Testiki.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white
       ),
-      initialRoute: "/bp",
+      initialRoute: "/",
       routes: {
         "/": (context) => const FirebaseStream(),
         "/Reg": (context) => RegestrationScreen(),
@@ -60,8 +61,8 @@ class MyApp extends StatelessWidget {
         "/stat" : (context) => ArticleScreen(txt: 'ssss.txt', description: 'Стресс',),
         "/stat2" : (context) => ArticleScreen(txt: 'qqq.txt', description: 'Эмоциональное выгорание',),
         "/stat3" : (context) => ArticleScreen(txt: 'medetacia.txt', description: 'Медитации',),
-        // "/Reg2": (context) => registerSecondScreen(),
-        // "/UserProfile": (context) => TestApp(),
+        // "/meditationscreen": (context) => MeditationScreen(),
+
         //
       },
 

@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/AppTypography.dart';
 
 class DailyReminder extends StatelessWidget {
+
+  void _launchYouTubeURL() async {
+    const url = 'https://youtu.be/CLeZyIID9Bo?si=UOG24bJYL2b-EjzJ'; // Замените на вашу ссылку на YouTube
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
-      onTap: (){},
+      onTap: () {
+        _launchYouTubeURL();
+      },
       child: Ink(
         width: double.infinity,
         height: 95,
