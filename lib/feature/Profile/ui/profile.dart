@@ -61,29 +61,85 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomWidget(iconPath: 'Prof2.svg', countText: '55', descriptionText: 'Тестов пройдено',),
-                    CustomWidget(iconPath: 'Prof4.svg', countText: '18', descriptionText: 'Уровень персонажа',),
+                    CustomWidget(
+                      iconPath: 'Prof2.svg',
+                      countText: '55',
+                      descriptionText: 'Тестов пройдено',
+                    ),
+                    CustomWidget(
+                      iconPath: 'Prof4.svg',
+                      countText: '18',
+                      descriptionText: 'Уровень персонажа',
+                    ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomWidget(iconPath: 'Prof3.svg', countText: '35', descriptionText: 'Заданий выполнено',),
-                    CustomWidget(iconPath: 'Prof1.svg', countText: '99%', descriptionText: 'Информации изучено',),
+                    CustomWidget(
+                      iconPath: 'Prof3.svg',
+                      countText: '35',
+                      descriptionText: 'Заданий выполнено',
+                    ),
+                    CustomWidget(
+                      iconPath: 'Prof1.svg',
+                      countText: '99%',
+                      descriptionText: 'Информации изучено',
+                    ),
                   ],
                 ),
-              ) ,
+              ),
               Padding(
-                padding: const EdgeInsets.all(30),
-                child: MeditationWidget(currentCount: 20, count: 20, description: 'Осталось помедитировать', text: 'Медитатор',)
-              )
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+
+                    Text(
+                      'Достижения',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                  child: MeditationWidget(
+                    currentCount: 9,
+                    count: 20,
+                    description: 'Осталось помедитировать',
+                    text: 'Медитатор',
+                  )),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                  child: MeditationWidget(
+                    currentCount: 16,
+                    count: 20,
+                    description: 'Осталось помедитировать',
+                    text: 'Медитатор',
+                  )),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                  child: MeditationWidget(
+                    currentCount: 20,
+                    count: 20,
+                    description: 'Осталось помедитировать',
+                    text: 'Медитатор',
+                  ))
             ],
           )),
     );
