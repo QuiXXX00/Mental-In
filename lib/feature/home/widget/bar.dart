@@ -20,7 +20,7 @@ class BottonBar extends StatelessWidget {
       Rec(),
       Test(),
       HomeScreen(),
-      Calendar(),// Assuming Rec is the recommendation screen
+      Calendar1(),// Assuming Rec is the recommendation screen
       Theory(),
     ];
   }

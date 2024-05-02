@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isTasksSelected = false; // Флаг для отслеживания выбора "Задания"
   User? user = FirebaseAuth.instance.currentUser;
   List<String> users = [];
-  int Totalexp = 0;
+
   late Timer _timer;
 
 
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     String greeting = getGreeting();
     return Scaffold(
-      appBar: const CustomAppBarAvatar(
+      appBar:  CustomAppBarAvatar(
         text: '',
       ),
       body: Column(
@@ -69,12 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   .collection('userProfile')
                   .snapshots(),
               builder: (context, snapshot) {
-                GetData().getexp().then((v) {
-                  setState(() {
-                    Totalexp = v;
-                  });
-                });
-                StoreData().changeLvls(Totalexp);
+
+
 
                 return Column(
                   children: <Widget>[
@@ -298,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             );
                                           }),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     )
                                   ],
@@ -339,6 +335,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       );
                                     }),
+                              ),
+                              const SizedBox(
+                                height: 20,
                               )
                             ],
                           ),

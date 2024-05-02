@@ -30,7 +30,12 @@ class StoreData {
     FirebaseFirestore.instance.collection('userProfile');
     ref.doc(user!.uid).set({'name': name});
   }
-
+  postProfileToFirestore(String img) async {
+    var user = FirebaseAuth.instance.currentUser;
+    CollectionReference ref =
+    FirebaseFirestore.instance.collection('userProfile');
+    ref.doc(user!.uid).set({'Profileimg': img},SetOptions(merge: true));
+  }
   dataupload(List listOfTasks,) {
     User? user = FirebaseAuth.instance.currentUser;
     var snap = FirebaseFirestore.instance

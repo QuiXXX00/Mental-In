@@ -81,7 +81,7 @@ class MeditationWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$description ${isMaxProgress ? count : currentCount} раз',
+                  currentCount <= count ? '${description+' '+(count-currentCount).toString()+' раз'}' : 'Задание выполнено',
                   style: TextStyle(
                     color: isMaxProgress ? Colors.green : Color(0xFF8E97FD),
                     fontSize: 11,

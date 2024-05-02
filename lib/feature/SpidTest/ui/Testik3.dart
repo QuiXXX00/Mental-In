@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart/utils/AppTypography.dart';
 import '../../../widgets/bar/AppBarAvatar.dart';
 import '../../../widgets/buttons/custom_text_batton.dart';
+import '../../auth/firebase/get_data.dart';
 
 class AnxietyTestScreen extends StatefulWidget {
   @override
@@ -169,11 +172,23 @@ class _AnxietyTestScreenState extends State<AnxietyTestScreen> {
   }
 }
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   final String result;
 
   ResultScreen({required this.result});
 
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  int? tests;
+  @override
+  void initState() {
+    super.initState();
+
+    GetData().getuser1().then((v){tests = v;});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,7 +245,7 @@ class ResultScreen extends StatelessWidget {
                                   .copyWith(color: Colors.black),
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: '$result',
+                                    text: '${widget.result}',
                                     style: AppTypography.f14w400.copyWith(
                                         color: Colors.black))
                               ])),
@@ -239,11 +254,15 @@ class ResultScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 200),
+                padding: const EdgeInsets.only(bottom: 100),
                 child: CustomTextButton(
                   isActive: true,
                   text: 'Понял',
                   callback: () {
+                    var user = FirebaseAuth.instance.currentUser;
+                    CollectionReference ref =
+                    FirebaseFirestore.instance.collection('userProfile');
+                    ref.doc(user!.uid).set({'Tests': tests!+1 },SetOptions(merge: true));
                     Navigator.of(context, rootNavigator: true)
                         .pushNamedAndRemoveUntil('/bp', (route) => false);
                   },

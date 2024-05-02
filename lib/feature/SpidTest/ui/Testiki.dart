@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart/utils/AppTypography.dart';
 import 'package:smart/utils/colors2.dart';
 import '../../../widgets/bar/AppBarAvatar.dart';
 import '../../../widgets/buttons/custom_text_batton.dart';
+import '../../auth/firebase/get_data.dart';
 import '../questions.dart'; // Импортируйте список вопросов
 
 class EysenckTestScreen extends StatefulWidget {
@@ -144,11 +147,23 @@ class QuestionTile extends StatelessWidget {
   }
 }
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   final Map<int, bool> answers;
 
   ResultScreen({required this.answers});
 
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  int? tests;
+  @override
+  void initState() {
+    super.initState();
+
+    GetData().getuser1().then((v){tests = v;});
+  }
   @override
   Widget build(BuildContext context) {
     // Логика для подсчета результатов и определения темперамента пользователя
@@ -156,7 +171,7 @@ class ResultScreen extends StatelessWidget {
     int neuroticismScore = 0;
 
     // Считаем очки
-    answers.forEach((index, answer) {
+    widget.answers.forEach((index, answer) {
       if (index == 0 ||
           index == 2 ||
           index == 7 ||
@@ -312,6 +327,10 @@ class ResultScreen extends StatelessWidget {
                   isActive: true,
                   text: 'Понял',
                   callback: () {
+                    var user = FirebaseAuth.instance.currentUser;
+                    CollectionReference ref =
+                    FirebaseFirestore.instance.collection('userProfile');
+                    ref.doc(user!.uid).set({'Tests': tests!+1 },SetOptions(merge: true));
                     Navigator.of(context, rootNavigator: true)
                         .pushNamedAndRemoveUntil('/bp', (route) => false);
                   },

@@ -40,7 +40,7 @@ class Rec extends StatelessWidget {
                   children: [
                     MedWidBool(isOriginal: true, text: 'Отдохните',),
 
-                    MedWidBool(isOriginal: false, text: 'Подрочите',)
+                    MedWidBool(isOriginal: false, text: 'Раслабьтесь',)
                   ],
                 ),
               ),

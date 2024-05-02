@@ -8,9 +8,11 @@ import 'package:smart/feature/auth/firebase/get_data.dart';
 import 'package:smart/utils/AppTypography.dart';
 
 import '../../../../widgets/bar/AppBarAvatar.dart';
+import '../../auth/firebase/save_data.dart';
 
 class UserProfileWidget extends StatefulWidget {
   final String username;
+
   int heatltlvl;
   int psihlvl;
   int stydylvl;
@@ -24,6 +26,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       width: 156,
       height: 142,

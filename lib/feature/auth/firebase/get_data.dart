@@ -11,13 +11,21 @@ final user = FirebaseAuth.instance.currentUser;
 class GetData{
 
 
-  Future<String> getuser() async {
+  Future<int> getuser() async {
     if (user != null) {
       var snap = await FirebaseFirestore.instance.collection(
           'userProfile').doc(user!.uid).get();
       Map<String, dynamic>? data = snap.data();
-      return await data?['name'];
-    }else return  "Пользователь не найден";
+      return await data?['CountTexts'];
+    }else return  0;
+  }
+  Future<int> getuser1() async {
+    if (user != null) {
+      var snap = await FirebaseFirestore.instance.collection(
+          'userProfile').doc(user!.uid).get();
+      Map<String, dynamic>? data = snap.data();
+      return await data?['Tests'];
+    }else return  0;
   }
 
   Future<String> getimg() async {
@@ -38,6 +46,17 @@ class GetData{
         }
     );
     return users;
+  }
+  Future<List<String>> getevents()  async {
+    List<String> events = [];
+    await FirebaseFirestore.instance.collection('userProfile/${user?.uid}/event').get().then(
+            (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            events.add(docSnapshot.id);
+          }
+        }
+    );
+    return events;
   }
 
   Future<List<String>> getinfo()  async{
@@ -72,5 +91,15 @@ class GetData{
    );
     return Totalexp ;
   }
+  Future<List<String>> gettasks()  async {
+    List<String> users = [];
+    await FirebaseFirestore.instance.collection('userProfile/${user?.uid}/isComplitTasks').get().then(
+            (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            users.add(docSnapshot.id);
+          }
+        }
+    );
+    return users;
+  }
 }
-

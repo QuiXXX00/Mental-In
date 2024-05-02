@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../auth/firebase/get_data.dart';
+import '../../auth/firebase/save_data.dart';
+
 class CustomContainerWidget extends StatefulWidget {
  CustomContainerWidget({
     Key? key,
@@ -33,9 +36,15 @@ class CustomContainerWidget extends StatefulWidget {
 
 class _CustomContainerWidgetState extends State<CustomContainerWidget> {
 
-
+  int Totalexp = 0;
   @override
   Widget build(BuildContext context) {
+    GetData().getexp().then((v) {
+      setState(() {
+        Totalexp = v;
+      });
+    });
+
     return Container(
       width: 374,
       height: 80,
@@ -113,15 +122,13 @@ class _CustomContainerWidgetState extends State<CustomContainerWidget> {
                           'name': docSnapshot.docs[widget.doc]
                               .get('name'),
                         }, SetOptions(merge: true));
-                        //widget.Totalexp += int.parse(docSnapshot.docs[widget.doc]
-                        //    .get('exp'));
-                        //widget.callback(int.parse(docSnapshot.docs[widget.doc]
-                       //     .get('exp')));
+
                       });
                     CollectionReference ref = FirebaseFirestore.instance
                         .collection('userProfile/${user?.uid}/isUncomplitTasks');
                     ref.doc(widget.index).delete();
                 });
+                StoreData().changeLvls(Totalexp);
               },
               icon: SvgPicture.asset(
                 widget.isButtonPressed ? 'Assets/icons/unCheck.svg' : 'Assets/icons/check.svg',

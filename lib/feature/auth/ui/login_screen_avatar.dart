@@ -16,38 +16,51 @@ class LoginScreenAvatar extends StatefulWidget {
 }
 
 class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
-  List<String> listOfTasks=[];
- int index = 0 ;
- @override
- void initState() {
-   super.initState();
-   GetData().getinfo().then((List<String> value) => setState(() {
-     listOfTasks = value;
-   }));
-   setState(() {
+  List<String> listOfTasks = [];
+  int index = 0;
 
-     StoreData().dataupload(listOfTasks);
-   });
- }
+  @override
+  void initState() {
+    super.initState();
+    GetData().getinfo().then((List<String> value) => setState(() {
+          listOfTasks = value;
+        }));
+    setState(() {
+      StoreData().dataupload(listOfTasks);
+    });
+  }
 
- callback(newindex) {
-   setState(() {
-     index = newindex;
-   });
- }
+  callback(newindex) {
+    setState(() {
+      index = newindex;
+    });
+  }
+
   List<String> charactersURL = [
-   'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI1.png?alt=media&token=624d3d95-6d15-4bb3-ad1f-ac3f3f9e1bb4',
+    'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI1.png?alt=media&token=624d3d95-6d15-4bb3-ad1f-ac3f3f9e1bb4',
     'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI2.png?alt=media&token=caf6b1f6-2418-4dbf-9cd1-3ea2b29eb8a8',
     'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI3.png?alt=media&token=59feef49-cfa1-457a-bbed-3cfe0609eb0a',
     'https://firebasestorage.googleapis.com/v0/b/mental-in-cf02f.appspot.com/o/characters%2FCHIBI4.png?alt=media&token=35351312-b69c-47b1-92c0-a1bd61f7589c',
-];
+  ];
+
   Future<void> uploadimg() async {
     var user = FirebaseAuth.instance.currentUser;
-    CollectionReference ref = FirebaseFirestore.instance.collection('userProfile');
-    ref.doc(user!.uid).set({'imgURL': charactersURL[index],'healthlvl': 1, 'psihlvl': 1, 'studylvl': 1,}, SetOptions(merge: true));
+    CollectionReference ref =
+        FirebaseFirestore.instance.collection('userProfile');
+    ref.doc(user!.uid).set({
+      'imgURL': charactersURL[index],
+      'healthlvl': 1,
+      'psihlvl': 1,
+      'studylvl': 1,
+      'CountTexts': 0,
+      'Tests': 0,
+      'Profileimg':
+          'https://www.dentalxp.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fuser-placeholder.9fc8def1.png&w=1920&q=75'
+    }, SetOptions(merge: true));
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
-}
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +106,8 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
                     angle: -3.14,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamedAndRemoveUntil('/Reg', (Route<dynamic> route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/Reg', (Route<dynamic> route) => false);
                       },
                       child: Container(
                         width: 55,
@@ -110,7 +124,8 @@ class _LoginScreenAvatarState extends State<LoginScreenAvatar> {
                     ),
                   ),
                 ),
-                Positioned(top: 230, left: 10, child: ImageSwitcher(index,callback))
+                Positioned(
+                    top: 230, left: 10, child: ImageSwitcher(index, callback))
               ],
             ),
             Padding(
