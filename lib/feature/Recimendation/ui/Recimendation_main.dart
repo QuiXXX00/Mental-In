@@ -38,7 +38,7 @@ class Rec extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MedWidBool(isOriginal: true, text: 'Отдохните',),
+                    MedWidBool(isOriginal: true, text: 'Подышите',),
 
                     MedWidBool(isOriginal: false, text: 'Раслабьтесь',)
                   ],

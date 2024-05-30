@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
         "/stat" : (context) => ArticleScreen(txt: 'ssss.txt', description: 'Стресс',),
         "/stat2" : (context) => ArticleScreen(txt: 'qqq.txt', description: 'Выгорание',),
         "/stat3" : (context) => ArticleScreen(txt: 'medetacia.txt', description: 'Медитации',),
+        "/med" : (context) => BreathingExerciseScreen()
         // "/meditationscreen": (context) => MeditationScreen(),
 
         //

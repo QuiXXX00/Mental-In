@@ -5,6 +5,7 @@ class MedWidBool extends StatelessWidget {
   final bool isOriginal;
   final String text;
 
+
   MedWidBool({required this.isOriginal, required this.text});
 
   @override
@@ -14,6 +15,7 @@ class MedWidBool extends StatelessWidget {
     String imagePath = isOriginal
         ? 'Assets/icons/GroupMedBaba.svg'
         : 'Assets/icons/GroupMedEbaniLuk.svg';
+
 
     return InkWell(
       borderRadius: BorderRadius.circular(10),
@@ -57,7 +59,7 @@ class MedWidBool extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '3-10 MIN',
+                      '1 MIN',
                       style: TextStyle(
                         color: textColor,
                         fontSize: 11,
